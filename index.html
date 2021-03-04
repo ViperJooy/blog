@@ -6,7 +6,7 @@
   <meta name="theme-color" content=#58b77a>
   <title>Viper</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Viper">
+  <meta name="author" content="">
   <meta name="keywords" content="">
   <meta name="description" content="">
   <script id="hexo-configurations">
@@ -25,7 +25,7 @@
   };
 </script>
 
-  <link rel="shortcut icon" href="/">
+  <link rel="shortcut icon" href="/favicon.ico">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/css/main.min.css">
   <style type="text/css">
     pre,
@@ -53,7 +53,7 @@
 	$(".menu-container").jSideMenu({
 	    jSidePosition: "position-right",
 	    jSideSticky: true,
-	    jSideSkin: "greenish",
+	    jSideSkin: "orange",
 	     });
 	}); 
 	</script>
@@ -81,20 +81,50 @@
   <div id="local-search-result"></div>
 </div>
 
-<div id="lx-aside" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/cover.jpeg)">
+<div id="lx-aside" style="background-image: url(/images/cover.jpg)">
   <div class="overlay">
   <div class="featured">
-    <div class="avatar"><a href="/"><img src="/images/avatar.jpeg"></a></div>
-    <span>Viper</span>
+    <div class="avatar"><a href="/"><img src="/images/avatar.jpg"></a></div>
+    <span></span>
     <h1>Viper</h1>
     <span>——This is Viper's blog</span>
     <div class="social-links">
+<script src="https://www.jq22.com/demo/jQueryTypeit201709040000/dist/typeit.min.js"></script>
+
     <a href="https://github.com/viperjooy" target="_blank"><i class="fa fa-github fa-fw"></i></a>
+<script src="https://www.jq22.com/demo/jQueryTypeit201709040000/dist/typeit.min.js"></script>
+
     <a href="mailto:viperjooy@email.com" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+<script src="https://www.jq22.com/demo/jQueryTypeit201709040000/dist/typeit.min.js"></script>
+
     <a href="https://weibo.com/viperjooy" target="_blank"><i class="fa fa-weibo fa-fw"></i></a>
+<script src="https://www.jq22.com/demo/jQueryTypeit201709040000/dist/typeit.min.js"></script>
+
     <a href="https://www.youtube.com/channel/UCkYS9Cw5yEvwSnZKwIgOTbg" target="_blank"><i class="fa fa-youtube fa-fw"></i></a>
-    <a href="http://music.viper.work" target="_blank"><i class="fa fa-music fa-fw"></i></a>
+<script src="https://www.jq22.com/demo/jQueryTypeit201709040000/dist/typeit.min.js"></script>
+
+    <a href="https://music.viper.work" target="_blank"><i class="fa fa-music fa-fw"></i></a>
 </div>
+    <span id="hitokoto" style="text-align:center;"><h1 class="hitokoto_text" id="hitokoto_text" style="color: rgb(231, 226, 226);"></h1>—
+        <b style="color:white;font-style: italic;" id="from"></b></span>
+        <script>
+            fetch('https://v1.hitokoto.cn')
+              .then(response => response.json())
+              .then(data => {
+                const hitokoto = document.getElementById('hitokoto_text')
+                hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+                // hitokoto.innerText = data.hitokoto
+                const from = document.getElementById('from')
+                from.innerText = data.from
+
+                $('.hitokoto_text').typeIt({
+                    whatToType: data.hitokoto,
+                    typeSpeed: 100
+                })
+              })
+              .catch(console.error)
+          </script>
+
   </div>
   </div>
 </div>
@@ -145,11 +175,11 @@
       <div class="col">
         <div class="row for-pic">
           <div class="profile-pic">
-            <a href="/"><img src="/images/avatar.jpeg" alt="Viper"/></a>
+            <a href="/"><img src="/images/avatar.jpg" alt=""/></a>
           </div>
         </div>
         <div class="row for-name">
-          <p>Viper</p>
+          <p></p>
           <span class="tagline">Hello, World!</span>
         </div>
       </div>
@@ -159,7 +189,10 @@
   <ul class="menu-items">
     <li><a href="/"><i class="fa fa-home fa-fw"></i>Home</a></li>
     <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
-    
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-th-list fa-fw"></i>Categories</span>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/New-World/">New World</a></li></ul>
+    </li>
     <li class="has-sub"><span class="dropdown-heading">
       <i class="fa fa-bookmark fa-fw"></i>Pages</span>
         <ul>
