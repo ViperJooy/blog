@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>解决访问github过慢以及git clone过慢的方法</title>
+    <url>/2021/03/04/github%E8%AE%BF%E9%97%AE%E6%85%A2/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="解决访问github过慢以及git-clone过慢的方法"><a href="#解决访问github过慢以及git-clone过慢的方法" class="headerlink" title="解决访问github过慢以及git clone过慢的方法"></a>解决访问github过慢以及git clone过慢的方法</h3>
+          </div>
+
+<h4 id="将-替换为可正常下载和clone"><a href="#将-替换为可正常下载和clone" class="headerlink" title="将 替换为可正常下载和clone"></a>将 <font color="ff0000"><span class="label success">gihub.com</span></font>替换为<font color="ff0000"><span class="label success">github.com.cnpmjs.org</span></font>可正常下载和clone</h4>]]></content>
+      <categories>
+        <category>github</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Heroku+Cloudflare自建爬墙梯子，永久免费，助你打开新世界</title>
     <url>/2021/01/16/kexue/</url>
     <content><![CDATA[<div class="note success">
