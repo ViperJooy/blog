@@ -53,7 +53,7 @@
 	$(".menu-container").jSideMenu({
 	    jSidePosition: "position-right",
 	    jSideSticky: true,
-	    jSideSkin: "orange",
+	    jSideSkin: "green",
 	     });
 	}); 
 	</script>
@@ -121,12 +121,12 @@
     <a href="https://www.youtube.com/channel/UCkYS9Cw5yEvwSnZKwIgOTbg" target="_blank"><i class="fa fa-youtube fa-fw"></i></a>
 <script src="https://www.jq22.com/demo/jQueryTypeit201709040000/dist/typeit.min.js"></script>
 
-    <a href="https://music.viper.work" target="_blank"><i class="fa fa-music fa-fw"></i></a>
+    <a href="http://music.viper.work" target="_blank"><i class="fa fa-music fa-fw"></i></a>
 </div>
     <span id="hitokoto" style="text-align:center;"><h1 class="hitokoto_text" id="hitokoto_text" style="color: rgb(231, 226, 226);"></h1>—
         <b style="color:white;font-style: italic;" id="from"></b></span>
         <script>
-            fetch('https://v1.hitokoto.cn')
+            fetch('https://v1.hitokoto.cn?c=j')
               .then(response => response.json())
               .then(data => {
                 const hitokoto = document.getElementById('hitokoto_text')
@@ -167,7 +167,7 @@
 				<div class="display-tc">
 					<div>
 						<span>Next</span>
-						<h3>没有更新的文章</h3>
+						<h3>No newer post</h3>
 					</div>
 				</div>
 			</div>
@@ -221,21 +221,21 @@
   </div>
   <nav class="menu-container">
   <ul class="menu-items">
-    <li><a href="/"><i class="fa fa-home fa-fw"></i>首页</a></li>
-    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>Home</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
     <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-th-list fa-fw"></i>分类</span>
+      <i class="fa fa-th-list fa-fw"></i>Categories</span>
         <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/New-World/">New World</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li></ul>
     </li>
     <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-bookmark fa-fw"></i>页面</span>
+      <i class="fa fa-bookmark fa-fw"></i>Pages</span>
         <ul>
           <li><a href="/about/">About</a></li>
         <li><a href="/guestbook/">Guestbook</a></li>
         </ul>
     </li>
     <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-link fa-fw"></i>友链</span>
+      <i class="fa fa-link fa-fw"></i>Friends</span>
         <ul>
           <li> <a href="https://lx.js.org" target="_blank">Theme-Lx</a></li>
         </ul>
