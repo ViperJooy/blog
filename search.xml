@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>解决访问github过慢以及git clone过慢的方法</title>
+    <url>/2021/03/04/github%E8%AE%BF%E9%97%AE%E6%85%A2/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="解决访问github过慢以及git-clone过慢的方法"><a href="#解决访问github过慢以及git-clone过慢的方法" class="headerlink" title="解决访问github过慢以及git clone过慢的方法"></a>解决访问github过慢以及git clone过慢的方法</h3>
+          </div>
+
+<h4 id="将-替换为可正常下载和clone"><a href="#将-替换为可正常下载和clone" class="headerlink" title="将 替换为可正常下载和clone"></a>将 <font color="ff0000"><span class="label success">gihub.com</span></font>替换为<font color="ff0000"><span class="label success">github.com.cnpmjs.org</span></font>可正常下载和clone</h4>]]></content>
+      <categories>
+        <category>github</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Heroku+Cloudflare自建爬墙梯子，永久免费，助你打开新世界</title>
     <url>/2021/01/16/kexue/</url>
     <content><![CDATA[<div class="note success">
@@ -22,21 +37,6 @@
       </tags>
   </entry>
   <entry>
-    <title>解决访问github过慢以及git clone过慢的方法</title>
-    <url>/2021/03/04/github%E8%AE%BF%E9%97%AE%E6%85%A2/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="解决访问github过慢以及git-clone过慢的方法"><a href="#解决访问github过慢以及git-clone过慢的方法" class="headerlink" title="解决访问github过慢以及git clone过慢的方法"></a>解决访问github过慢以及git clone过慢的方法</h3>
-          </div>
-
-<h4 id="将-替换为可正常下载和clone"><a href="#将-替换为可正常下载和clone" class="headerlink" title="将 替换为可正常下载和clone"></a>将 <font color="ff0000"><span class="label success">gihub.com</span></font>替换为<font color="ff0000"><span class="label success">github.com.cnpmjs.org</span></font>可正常下载和clone</h4>]]></content>
-      <categories>
-        <category>github</category>
-      </categories>
-      <tags>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>解决docker容器中的nginx代理其他容器的各种问题</title>
     <url>/2021/03/05/%E8%A7%A3%E5%86%B3docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E7%9A%84nginx%E4%BB%A3%E7%90%86%E5%85%B6%E4%BB%96%E5%AE%B9%E5%99%A8%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<div class="note success">
@@ -49,8 +49,7 @@
 <figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line">services:</span><br><span class="line">  nginx:</span><br><span class="line">    container_name: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">    restart: <span class="string">&#x27;always&#x27;</span></span><br><span class="line">    image: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">    networks:</span><br><span class="line">      - frontend</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&#x27;80:80&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;443:443&#x27;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - <span class="string">&#x27;/home/nginx/www:/usr/share/nginx/html&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;/home/nginx/log:/var/log/nginx/&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;/home/nginx/conf:/etc/nginx/conf.d&#x27;</span></span><br><span class="line"></span><br><span class="line">  music:</span><br><span class="line">    container_name: <span class="string">&#x27;music&#x27;</span></span><br><span class="line">    restart: <span class="string">&#x27;always&#x27;</span></span><br><span class="line">    image: <span class="string">&#x27;binaryify/netease_cloud_music_api&#x27;</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&#x27;3000:3000&#x27;</span></span><br><span class="line">    networks:</span><br><span class="line">      - frontend</span><br><span class="line">networks:</span><br><span class="line">  frontend:</span><br></pre></td></tr></table></figure>
 
 
-<h4 id="查看容器信息命令"><a href="#查看容器信息命令" class="headerlink" title="查看容器信息命令"></a>查看容器信息命令</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker inspect container</span><br></pre></td></tr></table></figure>
-<h4 id="可以获取容器ip"><a href="#可以获取容器ip" class="headerlink" title="可以获取容器ip"></a>可以获取容器ip</h4>]]></content>
+<h4 id="查看容器信息命令，可以获取容器ip等信息"><a href="#查看容器信息命令，可以获取容器ip等信息" class="headerlink" title="查看容器信息命令，可以获取容器ip等信息"></a>查看容器信息命令，可以获取容器ip等信息</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker inspect container</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>docker</category>
       </categories>
