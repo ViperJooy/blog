@@ -1,6 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CentOS8 安装 mysql 5.7</title>
+    <url>/2021/03/15/CentOS8-%E5%AE%89%E8%A3%85-mysql-5-7/</url>
+    <content><![CDATA[<div class="note success">
+            <h5 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h5>
+          </div>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum update</span><br><span class="line">yum install ncurses-compat-libs</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+<div class="note success">
+            <h5 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h5><h5 id="可以自行选择下载的版本-https-repo-mysql-com-yum"><a href="#可以自行选择下载的版本-https-repo-mysql-com-yum" class="headerlink" title="可以自行选择下载的版本  https://repo.mysql.com/yum/"></a>可以自行选择下载的版本  <a href="https://repo.mysql.com/yum/">https://repo.mysql.com/yum/</a></h5>
+          </div>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/mysql-community-libs-5.7.31-1.el7.x86_64.rpm</span><br><span class="line">wget https://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/mysql-community-common-5.7.31-1.el7.x86_64.rpm</span><br><span class="line">wget https://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/mysql-community-client-5.7.31-1.el7.x86_64.rpm</span><br><span class="line">wget https://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/mysql-community-server-5.7.31-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<div class="note success">
+            <h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5>
+          </div>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rpm -Uvh mysql-community-libs-5.7.31-1.el7.x86_64.rpm</span><br><span class="line">rpm -Uvh mysql-community-common-5.7.31-1.el7.x86_64.rpm</span><br><span class="line">rpm -Uvh mysql-community-client-5.7.31-1.el7.x86_64.rpm</span><br><span class="line">rpm -Uvh mysql-community-server-5.7.31-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<div class="note success">
+            <h5 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h5>
+          </div>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start mysqld</span><br></pre></td></tr></table></figure>
+<div class="note success">
+            <h5 id="查找默认密码"><a href="#查找默认密码" class="headerlink" title="查找默认密码"></a>查找默认密码</h5>
+          </div>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">grep &#x27;temporary password&#x27; /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+<div class="note success">
+            <h5 id="使用默认密码登录"><a href="#使用默认密码登录" class="headerlink" title="使用默认密码登录"></a>使用默认密码登录</h5>
+          </div>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<div class="note success">
+            <h5 id="更改默认密码"><a href="#更改默认密码" class="headerlink" title="更改默认密码"></a>更改默认密码</h5>
+          </div>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">set password for &#x27;root&#x27;@&#x27;%&#x27; = password(&#x27;123456&#x27;);</span><br></pre></td></tr></table></figure>
+<div class="note success">
+            <h5 id="更改密码校验等级"><a href="#更改密码校验等级" class="headerlink" title="更改密码校验等级"></a>更改密码校验等级</h5>
+          </div>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">set global validate_password_policy=0;</span><br></pre></td></tr></table></figure>
+<div class="note success">
+            <h5 id="创建新用户密码"><a href="#创建新用户密码" class="headerlink" title="创建新用户密码"></a>创建新用户密码</h5>
+          </div>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">create user &#x27;chutianshu&#x27;@&#x27;%&#x27; identified by &#x27;XXXXXXXX&#x27;;</span><br></pre></td></tr></table></figure>
+
+<div class="note success">
+            <h5 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h5>
+          </div>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO &#x27;username&#x27;@&#x27;%&#x27; identified by &#x27;123456&#x27;;</span><br></pre></td></tr></table></figure>
+<div class="note success">
+            <h5 id="使生效"><a href="#使生效" class="headerlink" title="使生效"></a>使生效</h5>
+          </div>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<div class="note success">
+            <h5 id="更改端口"><a href="#更改端口" class="headerlink" title="更改端口"></a>更改端口</h5>
+          </div>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br></pre></td></tr></table></figure>
+<div class="note success">
+            <h5 id="在文件中加入"><a href="#在文件中加入" class="headerlink" title="在文件中加入"></a>在文件中加入</h5>
+          </div>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">port=63306</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>linux</category>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>centos</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解决访问github过慢以及git clone过慢的方法</title>
     <url>/2021/03/04/github%E8%AE%BF%E9%97%AE%E6%85%A2/</url>
     <content><![CDATA[<div class="note success">
