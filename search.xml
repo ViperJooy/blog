@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>使用Heroku+Cloudflare自建爬墙梯子，永久免费，助你打开新世界</title>
-    <url>/2021/01/16/kexue/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="title"><a href="#title" class="headerlink" title="title"></a>title</h3><p>content</p>
-          </div>
-
-<span class="label success">content</span>
-
-<a class="btn" href="/2021/01/16/kexue/" title="title"><i class="fa fa-hand-o-right fa-fw"></i>跳转新浪</a>
-
-<blockquote class="blockquote-center"><p>人类的悲欢并不相通，我只觉得他们吵闹。<br><strong>——鲁迅</strong></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>New World</category>
-      </categories>
-      <tags>
-        <tag>梯子</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>解决访问github过慢以及git clone过慢的方法</title>
     <url>/2021/03/04/github%E8%AE%BF%E9%97%AE%E6%85%A2/</url>
     <content><![CDATA[<div class="note success">
@@ -109,20 +88,57 @@
       </tags>
   </entry>
   <entry>
-    <title>maven 强制更新依赖命令</title>
-    <url>/2021/03/08/maven-%E5%BC%BA%E5%88%B6%E6%9B%B4%E6%96%B0%E4%BE%9D%E8%B5%96%E5%91%BD%E4%BB%A4/</url>
+    <title>docker搭建chevereto图床</title>
+    <url>/2021/03/26/docker%E6%90%AD%E5%BB%BAchevereto%E5%9B%BE%E5%BA%8A/</url>
     <content><![CDATA[<div class="note success">
-            <h3 id="maven-强制更新依赖命令"><a href="#maven-强制更新依赖命令" class="headerlink" title="maven 强制更新依赖命令"></a>maven 强制更新依赖命令</h3>
+            <h5 id="docker搭建chevereto图床"><a href="#docker搭建chevereto图床" class="headerlink" title="docker搭建chevereto图床"></a>docker搭建chevereto图床</h5>
           </div>
 
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn dependency:purge-local-repository</span><br></pre></td></tr></table></figure>
+<h3 id="首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程"><a href="#首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程" class="headerlink" title="首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程"></a>首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程</h3><ul>
+<li><p>创建挂载目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir database chevereto_images</span><br></pre></td></tr></table></figure></li>
+<li><p>编辑 conf/php.ini 取消 2M 上传限制</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">PHP:</span><br><span class="line"><span class="attr">max_execution_time</span> = <span class="number">60</span><span class="comment">;</span></span><br><span class="line"><span class="attr">memory_limit</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">upload_max_filesize</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">post_max_size</span> =  <span class="number">256</span>M<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+</li>
+<li><p>调整权限</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">chown -R www-data:www-data database chevereto_images conf</span><br></pre></td></tr></table></figure></li>
+<li><p>创建<strong>docker-compose.yml</strong>文件</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  db:</span><br><span class="line">    image: mariadb</span><br><span class="line">    volumes:</span><br><span class="line">      - ./database:/var/lib/mysql:rw</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - private</span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_ROOT_PASSWORD: chevereto_root</span><br><span class="line">      MYSQL_DATABASE: chevereto</span><br><span class="line">      MYSQL_USER: chevereto</span><br><span class="line">      MYSQL_PASSWORD: chevereto</span><br><span class="line"></span><br><span class="line">  chevereto:</span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">    image: nmtan/chevereto</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - private</span><br><span class="line">    environment:</span><br><span class="line">      CHEVERETO_DB_HOST: db</span><br><span class="line">      CHEVERETO_DB_USERNAME: chevereto</span><br><span class="line">      CHEVERETO_DB_PASSWORD: chevereto</span><br><span class="line">      CHEVERETO_DB_NAME: chevereto</span><br><span class="line">      CHEVERETO_DB_PREFIX: chv_</span><br><span class="line">    volumes:</span><br><span class="line">      - ./chevereto_images:/var/www/html/images:rw</span><br><span class="line">      - ./conf/php.ini:/usr/local/etc/php/conf.d/php.ini</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">8080</span>:<span class="number">80</span></span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  private:</span><br></pre></td></tr></table></figure></li>
+<li><p>启动docker</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>docker</category>
+        <category>图床</category>
       </categories>
       <tags>
-        <tag>java</tag>
-        <tag>maven</tag>
+        <tag>linux</tag>
+        <tag>centos</tag>
+        <tag>图床</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Heroku+Cloudflare自建爬墙梯子，永久免费，助你打开新世界</title>
+    <url>/2021/01/16/kexue/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="title"><a href="#title" class="headerlink" title="title"></a>title</h3><p>content</p>
+          </div>
+
+<span class="label success">content</span>
+
+<a class="btn" href="/2021/01/16/kexue/" title="title"><i class="fa fa-hand-o-right fa-fw"></i>跳转新浪</a>
+
+<blockquote class="blockquote-center"><p>人类的悲欢并不相通，我只觉得他们吵闹。<br><strong>——鲁迅</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>New World</category>
+      </categories>
+      <tags>
+        <tag>梯子</tag>
       </tags>
   </entry>
   <entry>
@@ -133,6 +149,14 @@
           </div>
 <p>打开<a href="https://vercel.com/">vercel.com</a>，使用<a href="https://github.com/">github</a>账号登录，导入<a href="https://github.com/">github</a>项目，即可部署</p>
 ]]></content>
+      <categories>
+        <category>部署</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+        <tag>vercel</tag>
+        <tag>blog</tag>
+      </tags>
   </entry>
   <entry>
     <title>解决docker容器中的nginx代理其他容器的各种问题</title>
@@ -154,6 +178,23 @@
       <tags>
         <tag>docker</tag>
         <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>maven 强制更新依赖命令</title>
+    <url>/2021/03/08/maven-%E5%BC%BA%E5%88%B6%E6%9B%B4%E6%96%B0%E4%BE%9D%E8%B5%96%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="maven-强制更新依赖命令"><a href="#maven-强制更新依赖命令" class="headerlink" title="maven 强制更新依赖命令"></a>maven 强制更新依赖命令</h3>
+          </div>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn dependency:purge-local-repository</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>maven</tag>
       </tags>
   </entry>
 </search>

@@ -154,14 +154,30 @@
 
   <div class="lx-entry padding">
     <div>
+      <h2 class="title"><a href="/2021/03/26/docker%E6%90%AD%E5%BB%BAchevereto%E5%9B%BE%E5%BA%8A/">docker搭建chevereto图床</a></h2>
+      <span class="lx-post-detail"><i class="fa fa-calendar-o"></i> 2021-03-26 | <i class="fa fa-folder-o"></i> <a class="category-link" href="/categories/docker/">docker</a>,<a class="category-link" href="/categories/docker/%E5%9B%BE%E5%BA%8A/">图床</a></span>
+      <p><div class="note success">
+            <h5 id="docker搭建chevereto图床"><a href="#docker搭建chevereto图床" class="headerlink" title="docker搭建chevereto图床"></a>docker搭建chevereto图床</h5>
+          </div>
+
+<h3 id="首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程"><a href="#首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程" class="headerlink" title="首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程"></a>首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程</h3><ul>
+<li><p>创建挂载目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir database chevereto_images</span><br></pre></td></tr></table></figure></li>
+<li><p>编辑 conf/php.ini 取消 2M 上传限制</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PHP:</span><br><span class="line"><span class="attr">max_execution_time</span> = <span class="number">60</span><span class="comment">;</span></span><br><span class="line"><span class="attr">memory_limit</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">upload_max_filesize</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">post_max_size</span> =  <span class="number">256</span>M<span class="comment">;</span></span><br></pre></td></tr></table></figure></li></ul></p>
+      <div class="post-button"><a class="btn" href="/2021/03/26/docker%E6%90%AD%E5%BB%BAchevereto%E5%9B%BE%E5%BA%8A/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>阅读更多</a></div>
+    </div>
+  </div>
+  <div class="lx-entry padding">
+    <div>
       <h2 class="title"><a href="/2021/03/25/%E4%BD%BF%E7%94%A8vercel%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2github%E9%A1%B9%E7%9B%AE/">使用vercel免费部署github项目</a></h2>
-      <span class="lx-post-detail"><i class="fa fa-calendar-o"></i> 2021-03-25</span>
+      <span class="lx-post-detail"><i class="fa fa-calendar-o"></i> 2021-03-25 | <i class="fa fa-folder-o"></i> <a class="category-link" href="/categories/%E9%83%A8%E7%BD%B2/">部署</a></span>
       <p><div class="note success">
             <h3 id="本博客部署在vercel上"><a href="#本博客部署在vercel上" class="headerlink" title="本博客部署在vercel上"></a>本博客部署在vercel上</h3>
           </div>
 <p>打开<a target="_blank" rel="noopener" href="https://vercel.com/">vercel.com</a>，使用<a target="_blank" rel="noopener" href="https://github.com/">github</a>账号登录，导入<a target="_blank" rel="noopener" href="https://github.com/">github</a>项目，即可部署</p>
 </p>
-      <div class="post-button"><a class="btn" href="/2021/03/25/%E4%BD%BF%E7%94%A8vercel%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2github%E9%A1%B9%E7%9B%AE/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
+      <div class="post-button"><a class="btn" href="/2021/03/25/%E4%BD%BF%E7%94%A8vercel%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2github%E9%A1%B9%E7%9B%AE/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>阅读更多</a></div>
     </div>
   </div>
   <div class="lx-entry padding">
@@ -172,7 +188,7 @@
             <h5 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h5>
           </div>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum update</span><br><span class="line">yum install ncurses-compat-libs</span><br></pre></td></tr></table></figure></p>
-      <div class="post-button"><a class="btn" href="/2021/03/15/CentOS8-%E5%AE%89%E8%A3%85-mysql-5-7/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
+      <div class="post-button"><a class="btn" href="/2021/03/15/CentOS8-%E5%AE%89%E8%A3%85-mysql-5-7/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>阅读更多</a></div>
     </div>
   </div>
   <div class="lx-entry padding">
@@ -185,7 +201,7 @@
 
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn dependency:purge-local-repository</span><br></pre></td></tr></table></figure>
 </p>
-      <div class="post-button"><a class="btn" href="/2021/03/08/maven-%E5%BC%BA%E5%88%B6%E6%9B%B4%E6%96%B0%E4%BE%9D%E8%B5%96%E5%91%BD%E4%BB%A4/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
+      <div class="post-button"><a class="btn" href="/2021/03/08/maven-%E5%BC%BA%E5%88%B6%E6%9B%B4%E6%96%B0%E4%BE%9D%E8%B5%96%E5%91%BD%E4%BB%A4/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>阅读更多</a></div>
     </div>
   </div>
   <div class="lx-entry padding">
@@ -198,19 +214,7 @@
 
 
 <h4 id="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络"><a href="#例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络" class="headerlink" title="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络"></a>例如下面这段dockerfile，需要指定容器在同一<font color="ff0000"><span class="label success">networks</span></font>下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络</h4></p>
-      <div class="post-button"><a class="btn" href="/2021/03/05/%E8%A7%A3%E5%86%B3docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E7%9A%84nginx%E4%BB%A3%E7%90%86%E5%85%B6%E4%BB%96%E5%AE%B9%E5%99%A8%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
-    </div>
-  </div>
-  <div class="lx-entry padding">
-    <div>
-      <h2 class="title"><a href="/2021/03/04/github%E8%AE%BF%E9%97%AE%E6%85%A2/">解决访问github过慢以及git clone过慢的方法</a></h2>
-      <span class="lx-post-detail"><i class="fa fa-calendar-o"></i> 2021-03-04 | <i class="fa fa-folder-o"></i> <a class="category-link" href="/categories/github/">github</a></span>
-      <p><div class="note success">
-            <h3 id="解决访问github过慢以及git-clone过慢的方法"><a href="#解决访问github过慢以及git-clone过慢的方法" class="headerlink" title="解决访问github过慢以及git clone过慢的方法"></a>解决访问github过慢以及git clone过慢的方法</h3>
-          </div>
-
-<h4 id="将-替换为可正常下载和git-npm-install-hexo-lazyload-image-–saveclone"><a href="#将-替换为可正常下载和git-npm-install-hexo-lazyload-image-–saveclone" class="headerlink" title="将 替换为可正常下载和git npm install hexo-lazyload-image –saveclone"></a>将 <font color="ff0000"><span class="label success">gihub.com</span></font>替换为<font color="ff0000"><span class="label success">github.com.cnpmjs.org</span></font>可正常下载和git npm install hexo-lazyload-image –saveclone</h4></p>
-      <div class="post-button"><a class="btn" href="/2021/03/04/github%E8%AE%BF%E9%97%AE%E6%85%A2/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
+      <div class="post-button"><a class="btn" href="/2021/03/05/%E8%A7%A3%E5%86%B3docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E7%9A%84nginx%E4%BB%A3%E7%90%86%E5%85%B6%E4%BB%96%E5%AE%B9%E5%99%A8%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>阅读更多</a></div>
     </div>
   </div>
 
@@ -252,21 +256,21 @@
   </div>
   <nav class="menu-container">
   <ul class="menu-items">
-    <li><a href="/"><i class="fa fa-home fa-fw"></i>Home</a></li>
-    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>首页</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>归档</a></li>
     <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-th-list fa-fw"></i>Categories</span>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/New-World/">New World</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/mysql/">mysql</a></li></ul></li></ul>
+      <i class="fa fa-th-list fa-fw"></i>分类</span>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/New-World/">New World</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/docker/%E5%9B%BE%E5%BA%8A/">图床</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/mysql/">mysql</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%83%A8%E7%BD%B2/">部署</a></li></ul>
     </li>
     <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-bookmark fa-fw"></i>Pages</span>
+      <i class="fa fa-bookmark fa-fw"></i>页面</span>
         <ul>
           <li><a href="/about/">About</a></li>
         <li><a href="/guestbook/">Guestbook</a></li>
         </ul>
     </li>
     <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-link fa-fw"></i>Friends</span>
+      <i class="fa fa-link fa-fw"></i>友链</span>
         <ul>
           <li> <a href="https://lx.js.org" target="_blank">Theme-Lx</a></li>
         </ul>
