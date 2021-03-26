@@ -1,98 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>解决访问github过慢以及git clone过慢的方法</title>
-    <url>/2021/03/04/github%E8%AE%BF%E9%97%AE%E6%85%A2/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="解决访问github过慢以及git-clone过慢的方法"><a href="#解决访问github过慢以及git-clone过慢的方法" class="headerlink" title="解决访问github过慢以及git clone过慢的方法"></a>解决访问github过慢以及git clone过慢的方法</h3>
-          </div>
-
-<h4 id="将-替换为可正常下载和git-npm-install-hexo-lazyload-image-–saveclone"><a href="#将-替换为可正常下载和git-npm-install-hexo-lazyload-image-–saveclone" class="headerlink" title="将 替换为可正常下载和git npm install hexo-lazyload-image –saveclone"></a>将 <font color="ff0000"><span class="label success">gihub.com</span></font>替换为<font color="ff0000"><span class="label success">github.com.cnpmjs.org</span></font>可正常下载和git npm install hexo-lazyload-image –saveclone</h4>]]></content>
-      <categories>
-        <category>github</category>
-      </categories>
-      <tags>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用Heroku+Cloudflare自建爬墙梯子，永久免费，助你打开新世界</title>
-    <url>/2021/01/16/kexue/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="title"><a href="#title" class="headerlink" title="title"></a>title</h3><p>content</p>
-          </div>
-
-<span class="label success">content</span>
-
-<a class="btn" href="/2021/01/16/kexue/" title="title"><i class="fa fa-hand-o-right fa-fw"></i>跳转新浪</a>
-
-<blockquote class="blockquote-center"><p>人类的悲欢并不相通，我只觉得他们吵闹。<br><strong>——鲁迅</strong></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>New World</category>
-      </categories>
-      <tags>
-        <tag>梯子</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>maven 强制更新依赖命令</title>
-    <url>/2021/03/08/maven-%E5%BC%BA%E5%88%B6%E6%9B%B4%E6%96%B0%E4%BE%9D%E8%B5%96%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="maven-强制更新依赖命令"><a href="#maven-强制更新依赖命令" class="headerlink" title="maven 强制更新依赖命令"></a>maven 强制更新依赖命令</h3>
-          </div>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn dependency:purge-local-repository</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>maven</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用vercel免费部署github项目</title>
-    <url>/2021/03/25/%E4%BD%BF%E7%94%A8vercel%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2github%E9%A1%B9%E7%9B%AE/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="本博客部署在vercel上"><a href="#本博客部署在vercel上" class="headerlink" title="本博客部署在vercel上"></a>本博客部署在vercel上</h3>
-          </div>
-<p>打开<a href="https://vercel.com/">vercel.com</a>，使用<a href="https://github.com/">github</a>账号登录，导入<a href="https://github.com/">github</a>项目，即可部署</p>
-]]></content>
-      <categories>
-        <category>部署</category>
-      </categories>
-      <tags>
-        <tag>github</tag>
-        <tag>vercel</tag>
-        <tag>blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决docker容器中的nginx代理其他容器的各种问题</title>
-    <url>/2021/03/05/%E8%A7%A3%E5%86%B3docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E7%9A%84nginx%E4%BB%A3%E7%90%86%E5%85%B6%E4%BB%96%E5%AE%B9%E5%99%A8%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="解决docker容器中的nginx代理其他容器出现404或者不通"><a href="#解决docker容器中的nginx代理其他容器出现404或者不通" class="headerlink" title="解决docker容器中的nginx代理其他容器出现404或者不通"></a>解决docker容器中的nginx代理其他容器出现404或者不通</h3>
-          </div>
-
-
-<h4 id="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络"><a href="#例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络" class="headerlink" title="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络"></a>例如下面这段dockerfile，需要指定容器在同一<font color="ff0000"><span class="label success">networks</span></font>下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络</h4><a id="more"></a>
-
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line">services:</span><br><span class="line">  nginx:</span><br><span class="line">    container_name: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">    restart: <span class="string">&#x27;always&#x27;</span></span><br><span class="line">    image: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">    networks:</span><br><span class="line">      - frontend</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&#x27;80:80&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;443:443&#x27;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - <span class="string">&#x27;/home/nginx/www:/usr/share/nginx/html&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;/home/nginx/log:/var/log/nginx/&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;/home/nginx/conf:/etc/nginx/conf.d&#x27;</span></span><br><span class="line"></span><br><span class="line">  music:</span><br><span class="line">    container_name: <span class="string">&#x27;music&#x27;</span></span><br><span class="line">    restart: <span class="string">&#x27;always&#x27;</span></span><br><span class="line">    image: <span class="string">&#x27;binaryify/netease_cloud_music_api&#x27;</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&#x27;3000:3000&#x27;</span></span><br><span class="line">    networks:</span><br><span class="line">      - frontend</span><br><span class="line">networks:</span><br><span class="line">  frontend:</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="查看容器信息命令，可以获取容器ip等信息"><a href="#查看容器信息命令，可以获取容器ip等信息" class="headerlink" title="查看容器信息命令，可以获取容器ip等信息"></a>查看容器信息命令，可以获取容器ip等信息</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker inspect container</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS8 安装 mysql 5.7</title>
     <url>/2021/03/15/CentOS8-%E5%AE%89%E8%A3%85-mysql-5-7/</url>
     <content><![CDATA[<div class="note success">
@@ -195,6 +103,98 @@
         <tag>linux</tag>
         <tag>centos</tag>
         <tag>图床</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Heroku+Cloudflare自建爬墙梯子，永久免费，助你打开新世界</title>
+    <url>/2021/01/16/kexue/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="title"><a href="#title" class="headerlink" title="title"></a>title</h3><p>content</p>
+          </div>
+
+<span class="label success">content</span>
+
+<a class="btn" href="/2021/01/16/kexue/" title="title"><i class="fa fa-hand-o-right fa-fw"></i>跳转新浪</a>
+
+<blockquote class="blockquote-center"><p>人类的悲欢并不相通，我只觉得他们吵闹。<br><strong>——鲁迅</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>New World</category>
+      </categories>
+      <tags>
+        <tag>梯子</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决访问github过慢以及git clone过慢的方法</title>
+    <url>/2021/03/04/github%E8%AE%BF%E9%97%AE%E6%85%A2/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="解决访问github过慢以及git-clone过慢的方法"><a href="#解决访问github过慢以及git-clone过慢的方法" class="headerlink" title="解决访问github过慢以及git clone过慢的方法"></a>解决访问github过慢以及git clone过慢的方法</h3>
+          </div>
+
+<h4 id="将-替换为可正常下载和git-npm-install-hexo-lazyload-image-–saveclone"><a href="#将-替换为可正常下载和git-npm-install-hexo-lazyload-image-–saveclone" class="headerlink" title="将 替换为可正常下载和git npm install hexo-lazyload-image –saveclone"></a>将 <font color="ff0000"><span class="label success">gihub.com</span></font>替换为<font color="ff0000"><span class="label success">github.com.cnpmjs.org</span></font>可正常下载和git npm install hexo-lazyload-image –saveclone</h4>]]></content>
+      <categories>
+        <category>github</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>maven 强制更新依赖命令</title>
+    <url>/2021/03/08/maven-%E5%BC%BA%E5%88%B6%E6%9B%B4%E6%96%B0%E4%BE%9D%E8%B5%96%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="maven-强制更新依赖命令"><a href="#maven-强制更新依赖命令" class="headerlink" title="maven 强制更新依赖命令"></a>maven 强制更新依赖命令</h3>
+          </div>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn dependency:purge-local-repository</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用vercel免费部署github项目</title>
+    <url>/2021/03/25/%E4%BD%BF%E7%94%A8vercel%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2github%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="本博客部署在vercel上"><a href="#本博客部署在vercel上" class="headerlink" title="本博客部署在vercel上"></a>本博客部署在vercel上</h3>
+          </div>
+<p>打开<a href="https://vercel.com/">vercel.com</a>，使用<a href="https://github.com/">github</a>账号登录，导入<a href="https://github.com/">github</a>项目，即可部署</p>
+]]></content>
+      <categories>
+        <category>部署</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+        <tag>vercel</tag>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决docker容器中的nginx代理其他容器的各种问题</title>
+    <url>/2021/03/05/%E8%A7%A3%E5%86%B3docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E7%9A%84nginx%E4%BB%A3%E7%90%86%E5%85%B6%E4%BB%96%E5%AE%B9%E5%99%A8%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="解决docker容器中的nginx代理其他容器出现404或者不通"><a href="#解决docker容器中的nginx代理其他容器出现404或者不通" class="headerlink" title="解决docker容器中的nginx代理其他容器出现404或者不通"></a>解决docker容器中的nginx代理其他容器出现404或者不通</h3>
+          </div>
+
+
+<h4 id="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络"><a href="#例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络" class="headerlink" title="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络"></a>例如下面这段dockerfile，需要指定容器在同一<font color="ff0000"><span class="label success">networks</span></font>下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络</h4><a id="more"></a>
+
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line">services:</span><br><span class="line">  nginx:</span><br><span class="line">    container_name: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">    restart: <span class="string">&#x27;always&#x27;</span></span><br><span class="line">    image: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">    networks:</span><br><span class="line">      - frontend</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&#x27;80:80&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;443:443&#x27;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - <span class="string">&#x27;/home/nginx/www:/usr/share/nginx/html&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;/home/nginx/log:/var/log/nginx/&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;/home/nginx/conf:/etc/nginx/conf.d&#x27;</span></span><br><span class="line"></span><br><span class="line">  music:</span><br><span class="line">    container_name: <span class="string">&#x27;music&#x27;</span></span><br><span class="line">    restart: <span class="string">&#x27;always&#x27;</span></span><br><span class="line">    image: <span class="string">&#x27;binaryify/netease_cloud_music_api&#x27;</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&#x27;3000:3000&#x27;</span></span><br><span class="line">    networks:</span><br><span class="line">      - frontend</span><br><span class="line">networks:</span><br><span class="line">  frontend:</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="查看容器信息命令，可以获取容器ip等信息"><a href="#查看容器信息命令，可以获取容器ip等信息" class="headerlink" title="查看容器信息命令，可以获取容器ip等信息"></a>查看容器信息命令，可以获取容器ip等信息</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker inspect container</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>nginx</tag>
       </tags>
   </entry>
 </search>
