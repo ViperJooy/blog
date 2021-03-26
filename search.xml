@@ -1,39 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>docker搭建chevereto图床</title>
-    <url>/2021/03/26/docker%E6%90%AD%E5%BB%BAchevereto%E5%9B%BE%E5%BA%8A/</url>
-    <content><![CDATA[<div class="note success">
-            <h5 id="docker搭建chevereto图床"><a href="#docker搭建chevereto图床" class="headerlink" title="docker搭建chevereto图床"></a>docker搭建chevereto图床</h5>
-          </div>
-
-<h3 id="首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程"><a href="#首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程" class="headerlink" title="首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程"></a>首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程</h3><ul>
-<li><p>创建挂载目录</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir database chevereto_images</span><br></pre></td></tr></table></figure></li>
-<li><p>编辑 conf/php.ini 取消 2M 上传限制</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">PHP:</span><br><span class="line"><span class="attr">max_execution_time</span> = <span class="number">60</span><span class="comment">;</span></span><br><span class="line"><span class="attr">memory_limit</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">upload_max_filesize</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">post_max_size</span> =  <span class="number">256</span>M<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-</li>
-<li><p>调整权限</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">chown -R www-data:www-data database chevereto_images conf</span><br></pre></td></tr></table></figure></li>
-<li><p>创建<strong>docker-compose.yml</strong>文件</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  db:</span><br><span class="line">    image: mariadb</span><br><span class="line">    volumes:</span><br><span class="line">      - ./database:/var/lib/mysql:rw</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - private</span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_ROOT_PASSWORD: chevereto_root</span><br><span class="line">      MYSQL_DATABASE: chevereto</span><br><span class="line">      MYSQL_USER: chevereto</span><br><span class="line">      MYSQL_PASSWORD: chevereto</span><br><span class="line"></span><br><span class="line">  chevereto:</span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">    image: nmtan/chevereto</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - private</span><br><span class="line">    environment:</span><br><span class="line">      CHEVERETO_DB_HOST: db</span><br><span class="line">      CHEVERETO_DB_USERNAME: chevereto</span><br><span class="line">      CHEVERETO_DB_PASSWORD: chevereto</span><br><span class="line">      CHEVERETO_DB_NAME: chevereto</span><br><span class="line">      CHEVERETO_DB_PREFIX: chv_</span><br><span class="line">    volumes:</span><br><span class="line">      - ./chevereto_images:/var/www/html/images:rw</span><br><span class="line">      - ./conf/php.ini:/usr/local/etc/php/conf.d/php.ini</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">8080</span>:<span class="number">80</span></span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  private:</span><br></pre></td></tr></table></figure></li>
-<li><p>启动docker</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>docker</category>
-        <category>图床</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>centos</tag>
-        <tag>图床</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS8 安装 mysql 5.7</title>
     <url>/2021/03/15/CentOS8-%E5%AE%89%E8%A3%85-mysql-5-7/</url>
     <content><![CDATA[<div class="note success">
@@ -103,6 +70,39 @@
         <tag>linux</tag>
         <tag>centos</tag>
         <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker搭建chevereto图床</title>
+    <url>/2021/03/26/docker%E6%90%AD%E5%BB%BAchevereto%E5%9B%BE%E5%BA%8A/</url>
+    <content><![CDATA[<div class="note success">
+            <h5 id="docker搭建chevereto图床"><a href="#docker搭建chevereto图床" class="headerlink" title="docker搭建chevereto图床"></a>docker搭建chevereto图床</h5>
+          </div>
+
+<h3 id="首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程"><a href="#首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程" class="headerlink" title="首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程"></a>首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程</h3><ul>
+<li><p>创建挂载目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir database chevereto_images</span><br></pre></td></tr></table></figure></li>
+<li><p>编辑 conf/php.ini 取消 2M 上传限制</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">PHP:</span><br><span class="line"><span class="attr">max_execution_time</span> = <span class="number">60</span><span class="comment">;</span></span><br><span class="line"><span class="attr">memory_limit</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">upload_max_filesize</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">post_max_size</span> =  <span class="number">256</span>M<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+</li>
+<li><p>调整权限</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">chown -R www-data:www-data database chevereto_images conf</span><br></pre></td></tr></table></figure></li>
+<li><p>创建<strong>docker-compose.yml</strong>文件</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  db:</span><br><span class="line">    image: mariadb</span><br><span class="line">    volumes:</span><br><span class="line">      - ./database:/var/lib/mysql:rw</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - private</span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_ROOT_PASSWORD: chevereto_root</span><br><span class="line">      MYSQL_DATABASE: chevereto</span><br><span class="line">      MYSQL_USER: chevereto</span><br><span class="line">      MYSQL_PASSWORD: chevereto</span><br><span class="line"></span><br><span class="line">  chevereto:</span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">    image: nmtan/chevereto</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - private</span><br><span class="line">    environment:</span><br><span class="line">      CHEVERETO_DB_HOST: db</span><br><span class="line">      CHEVERETO_DB_USERNAME: chevereto</span><br><span class="line">      CHEVERETO_DB_PASSWORD: chevereto</span><br><span class="line">      CHEVERETO_DB_NAME: chevereto</span><br><span class="line">      CHEVERETO_DB_PREFIX: chv_</span><br><span class="line">    volumes:</span><br><span class="line">      - ./chevereto_images:/var/www/html/images:rw</span><br><span class="line">      - ./conf/php.ini:/usr/local/etc/php/conf.d/php.ini</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">8080</span>:<span class="number">80</span></span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  private:</span><br></pre></td></tr></table></figure></li>
+<li><p>启动docker</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>docker</category>
+        <category>图床</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>centos</tag>
+        <tag>图床</tag>
       </tags>
   </entry>
   <entry>

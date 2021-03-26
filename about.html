@@ -129,6 +129,8 @@
     <span id="hitokoto" style="text-align:center;"><h1 class="hitokoto_text" id="hitokoto_text" style="color: rgb(231, 226, 226);"></h1>—
         <b style="color:white;font-style: italic;" id="from"></b></span>
         <script>
+ document.write('<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />');  
+
             fetch('https://v1.hitokoto.cn?c=j')
               .then(response => response.json())
               .then(data => {
@@ -144,6 +146,8 @@
                 })
               })
               .catch(console.error)
+
+             
           </script>
 </div>
 </div>
@@ -169,7 +173,6 @@
 </footer>
 
 </div>
-document.write('<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />');
 
 <button class="hamburger hamburger--arrow-r" type="button">
     <div class="hamburger-box">
