@@ -1,36 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>docker搭建chevereto图床</title>
-    <url>/2021/03/26/docker%E6%90%AD%E5%BB%BAchevereto%E5%9B%BE%E5%BA%8A/</url>
+    <title>N1 使用docker搭建emby</title>
+    <url>/2021/05/18/N1-%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAemby/</url>
     <content><![CDATA[<div class="note success">
-            <h5 id="docker搭建chevereto图床"><a href="#docker搭建chevereto图床" class="headerlink" title="docker搭建chevereto图床"></a>docker搭建chevereto图床</h5>
+            <h3 id="N1-使用docker搭建emby"><a href="#N1-使用docker搭建emby" class="headerlink" title="N1 使用docker搭建emby"></a>N1 使用docker搭建emby</h3>
           </div>
 
-<h3 id="首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程"><a href="#首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程" class="headerlink" title="首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程"></a>首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程</h3><ul>
-<li><p>创建挂载目录</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir database chevereto_images</span><br></pre></td></tr></table></figure></li>
-<li><p>编辑 conf/php.ini 取消 2M 上传限制</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">PHP:</span><br><span class="line"><span class="attr">max_execution_time</span> = <span class="number">60</span><span class="comment">;</span></span><br><span class="line"><span class="attr">memory_limit</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">upload_max_filesize</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">post_max_size</span> =  <span class="number">256</span>M<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-</li>
-<li><p>调整权限</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">chown -R www-data:www-data database chevereto_images conf</span><br></pre></td></tr></table></figure></li>
-<li><p>创建<strong>docker-compose.yml</strong>文件</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  db:</span><br><span class="line">    image: mariadb</span><br><span class="line">    volumes:</span><br><span class="line">      - ./database:/var/lib/mysql:rw</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - private</span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_ROOT_PASSWORD: chevereto_root</span><br><span class="line">      MYSQL_DATABASE: chevereto</span><br><span class="line">      MYSQL_USER: chevereto</span><br><span class="line">      MYSQL_PASSWORD: chevereto</span><br><span class="line"></span><br><span class="line">  chevereto:</span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">    image: nmtan/chevereto</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - private</span><br><span class="line">    environment:</span><br><span class="line">      CHEVERETO_DB_HOST: db</span><br><span class="line">      CHEVERETO_DB_USERNAME: chevereto</span><br><span class="line">      CHEVERETO_DB_PASSWORD: chevereto</span><br><span class="line">      CHEVERETO_DB_NAME: chevereto</span><br><span class="line">      CHEVERETO_DB_PREFIX: chv_</span><br><span class="line">    volumes:</span><br><span class="line">      - ./chevereto_images:/var/www/html/images:rw</span><br><span class="line">      - ./conf/php.ini:/usr/local/etc/php/conf.d/php.ini</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">8080</span>:<span class="number">80</span></span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  private:</span><br></pre></td></tr></table></figure></li>
-<li><p>启动docker</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull emby/embyserver_arm64v8:4.5.1.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">--name emby \</span><br><span class="line">--restart=always \</span><br><span class="line">-v /mnt/mmcblk2p4/config/emby/config:/config \</span><br><span class="line">-v /mnt/sda1:/mnt/sda1 \</span><br><span class="line">-v /mnt/sdb1:/mnt/sdb1 \</span><br><span class="line">-p 1900:1900 \</span><br><span class="line">-p 7359:7359 \</span><br><span class="line">-p 7359:7359/udp \</span><br><span class="line">-p 8096:8096 \</span><br><span class="line">-p 8920:8920 \</span><br><span class="line">--env UID=1000 \</span><br><span class="line">--env GID=100 \</span><br><span class="line">emby/embyserver_arm64v8:4.5.1.0</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>docker</category>
-        <category>图床</category>
       </categories>
       <tags>
-        <tag>linux</tag>
-        <tag>centos</tag>
-        <tag>图床</tag>
+        <tag>docker</tag>
+        <tag>N1</tag>
       </tags>
   </entry>
   <entry>
@@ -106,6 +90,54 @@
       </tags>
   </entry>
   <entry>
+    <title>docker搭建chevereto图床</title>
+    <url>/2021/03/26/docker%E6%90%AD%E5%BB%BAchevereto%E5%9B%BE%E5%BA%8A/</url>
+    <content><![CDATA[<div class="note success">
+            <h5 id="docker搭建chevereto图床"><a href="#docker搭建chevereto图床" class="headerlink" title="docker搭建chevereto图床"></a>docker搭建chevereto图床</h5>
+          </div>
+
+<h3 id="首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程"><a href="#首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程" class="headerlink" title="首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程"></a>首先在服务器安装docker和docker-compose，这里忽略，请自行查找教程</h3><ul>
+<li><p>创建挂载目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir database chevereto_images</span><br></pre></td></tr></table></figure></li>
+<li><p>编辑 conf/php.ini 取消 2M 上传限制</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">PHP:</span><br><span class="line"><span class="attr">max_execution_time</span> = <span class="number">60</span><span class="comment">;</span></span><br><span class="line"><span class="attr">memory_limit</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">upload_max_filesize</span> = <span class="number">256</span>M<span class="comment">;</span></span><br><span class="line"><span class="attr">post_max_size</span> =  <span class="number">256</span>M<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+</li>
+<li><p>调整权限</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">chown -R www-data:www-data database chevereto_images conf</span><br></pre></td></tr></table></figure></li>
+<li><p>创建<strong>docker-compose.yml</strong>文件</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  db:</span><br><span class="line">    image: mariadb</span><br><span class="line">    volumes:</span><br><span class="line">      - ./database:/var/lib/mysql:rw</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - private</span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_ROOT_PASSWORD: chevereto_root</span><br><span class="line">      MYSQL_DATABASE: chevereto</span><br><span class="line">      MYSQL_USER: chevereto</span><br><span class="line">      MYSQL_PASSWORD: chevereto</span><br><span class="line"></span><br><span class="line">  chevereto:</span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">    image: nmtan/chevereto</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - private</span><br><span class="line">    environment:</span><br><span class="line">      CHEVERETO_DB_HOST: db</span><br><span class="line">      CHEVERETO_DB_USERNAME: chevereto</span><br><span class="line">      CHEVERETO_DB_PASSWORD: chevereto</span><br><span class="line">      CHEVERETO_DB_NAME: chevereto</span><br><span class="line">      CHEVERETO_DB_PREFIX: chv_</span><br><span class="line">    volumes:</span><br><span class="line">      - ./chevereto_images:/var/www/html/images:rw</span><br><span class="line">      - ./conf/php.ini:/usr/local/etc/php/conf.d/php.ini</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">8080</span>:<span class="number">80</span></span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  private:</span><br></pre></td></tr></table></figure></li>
+<li><p>启动docker</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>docker</category>
+        <category>图床</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>centos</tag>
+        <tag>图床</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决访问github过慢以及git clone过慢的方法</title>
+    <url>/2021/03/04/github%E8%AE%BF%E9%97%AE%E6%85%A2/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="解决访问github过慢以及git-clone过慢的方法"><a href="#解决访问github过慢以及git-clone过慢的方法" class="headerlink" title="解决访问github过慢以及git clone过慢的方法"></a>解决访问github过慢以及git clone过慢的方法</h3>
+          </div>
+
+<h4 id="将-替换为可正常下载和git-npm-install-hexo-lazyload-image-–saveclone"><a href="#将-替换为可正常下载和git-npm-install-hexo-lazyload-image-–saveclone" class="headerlink" title="将 替换为可正常下载和git npm install hexo-lazyload-image –saveclone"></a>将 <font color="ff0000"><span class="label success">gihub.com</span></font>替换为<font color="ff0000"><span class="label success">github.com.cnpmjs.org</span></font>可正常下载和git npm install hexo-lazyload-image –saveclone</h4>]]></content>
+      <categories>
+        <category>github</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Heroku+Cloudflare自建爬墙梯子，永久免费，助你打开新世界</title>
     <url>/2021/01/16/kexue/</url>
     <content><![CDATA[<div class="note success">
@@ -127,21 +159,6 @@
       </tags>
   </entry>
   <entry>
-    <title>解决访问github过慢以及git clone过慢的方法</title>
-    <url>/2021/03/04/github%E8%AE%BF%E9%97%AE%E6%85%A2/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="解决访问github过慢以及git-clone过慢的方法"><a href="#解决访问github过慢以及git-clone过慢的方法" class="headerlink" title="解决访问github过慢以及git clone过慢的方法"></a>解决访问github过慢以及git clone过慢的方法</h3>
-          </div>
-
-<h4 id="将-替换为可正常下载和git-npm-install-hexo-lazyload-image-–saveclone"><a href="#将-替换为可正常下载和git-npm-install-hexo-lazyload-image-–saveclone" class="headerlink" title="将 替换为可正常下载和git npm install hexo-lazyload-image –saveclone"></a>将 <font color="ff0000"><span class="label success">gihub.com</span></font>替换为<font color="ff0000"><span class="label success">github.com.cnpmjs.org</span></font>可正常下载和git npm install hexo-lazyload-image –saveclone</h4>]]></content>
-      <categories>
-        <category>github</category>
-      </categories>
-      <tags>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>maven 强制更新依赖命令</title>
     <url>/2021/03/08/maven-%E5%BC%BA%E5%88%B6%E6%9B%B4%E6%96%B0%E4%BE%9D%E8%B5%96%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<div class="note success">
@@ -156,6 +173,23 @@
       <tags>
         <tag>java</tag>
         <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用vercel免费部署github项目</title>
+    <url>/2021/03/25/%E4%BD%BF%E7%94%A8vercel%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2github%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="本博客部署在vercel上"><a href="#本博客部署在vercel上" class="headerlink" title="本博客部署在vercel上"></a>本博客部署在vercel上</h3>
+          </div>
+<p>打开<a href="https://vercel.com/">vercel.com</a>，使用<a href="https://github.com/">github</a>账号登录，导入<a href="https://github.com/">github</a>项目，即可部署</p>
+]]></content>
+      <categories>
+        <category>部署</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+        <tag>vercel</tag>
+        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -178,23 +212,6 @@
       <tags>
         <tag>docker</tag>
         <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用vercel免费部署github项目</title>
-    <url>/2021/03/25/%E4%BD%BF%E7%94%A8vercel%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2github%E9%A1%B9%E7%9B%AE/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="本博客部署在vercel上"><a href="#本博客部署在vercel上" class="headerlink" title="本博客部署在vercel上"></a>本博客部署在vercel上</h3>
-          </div>
-<p>打开<a href="https://vercel.com/">vercel.com</a>，使用<a href="https://github.com/">github</a>账号登录，导入<a href="https://github.com/">github</a>项目，即可部署</p>
-]]></content>
-      <categories>
-        <category>部署</category>
-      </categories>
-      <tags>
-        <tag>github</tag>
-        <tag>vercel</tag>
-        <tag>blog</tag>
       </tags>
   </entry>
 </search>

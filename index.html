@@ -158,6 +158,19 @@
 
   <div class="lx-entry padding">
     <div>
+      <h2 class="title"><a href="/2021/05/18/N1-%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAemby/">N1 使用docker搭建emby</a></h2>
+      <span class="lx-post-detail"><i class="fa fa-calendar-o"></i> 2021-05-18 | <i class="fa fa-folder-o"></i> <a class="category-link" href="/categories/docker/">docker</a></span>
+      <p><div class="note success">
+            <h3 id="N1-使用docker搭建emby"><a href="#N1-使用docker搭建emby" class="headerlink" title="N1 使用docker搭建emby"></a>N1 使用docker搭建emby</h3>
+          </div>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull emby/embyserver_arm64v8:4.5.1.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">--name emby \</span><br><span class="line">--restart=always \</span><br><span class="line">-v /mnt/mmcblk2p4/config/emby/config:/config \</span><br><span class="line">-v /mnt/sda1:/mnt/sda1 \</span><br><span class="line">-v /mnt/sdb1:/mnt/sdb1 \</span><br><span class="line">-p 1900:1900 \</span><br><span class="line">-p 7359:7359 \</span><br><span class="line">-p 7359:7359/udp \</span><br><span class="line">-p 8096:8096 \</span><br><span class="line">-p 8920:8920 \</span><br><span class="line">--env UID=1000 \</span><br><span class="line">--env GID=100 \</span><br><span class="line">emby/embyserver_arm64v8:4.5.1.0</span><br></pre></td></tr></table></figure></p>
+      <div class="post-button"><a class="btn" href="/2021/05/18/N1-%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAemby/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
+    </div>
+  </div>
+  <div class="lx-entry padding">
+    <div>
       <h2 class="title"><a href="/2021/03/26/docker%E6%90%AD%E5%BB%BAchevereto%E5%9B%BE%E5%BA%8A/">docker搭建chevereto图床</a></h2>
       <span class="lx-post-detail"><i class="fa fa-calendar-o"></i> 2021-03-26 | <i class="fa fa-folder-o"></i> <a class="category-link" href="/categories/docker/">docker</a>,<a class="category-link" href="/categories/docker/%E5%9B%BE%E5%BA%8A/">图床</a></span>
       <p><div class="note success">
@@ -206,19 +219,6 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn dependency:purge-local-repository</span><br></pre></td></tr></table></figure>
 </p>
       <div class="post-button"><a class="btn" href="/2021/03/08/maven-%E5%BC%BA%E5%88%B6%E6%9B%B4%E6%96%B0%E4%BE%9D%E8%B5%96%E5%91%BD%E4%BB%A4/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
-    </div>
-  </div>
-  <div class="lx-entry padding">
-    <div>
-      <h2 class="title"><a href="/2021/03/05/%E8%A7%A3%E5%86%B3docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E7%9A%84nginx%E4%BB%A3%E7%90%86%E5%85%B6%E4%BB%96%E5%AE%B9%E5%99%A8%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/">解决docker容器中的nginx代理其他容器的各种问题</a></h2>
-      <span class="lx-post-detail"><i class="fa fa-calendar-o"></i> 2021-03-05 | <i class="fa fa-folder-o"></i> <a class="category-link" href="/categories/docker/">docker</a></span>
-      <p><div class="note success">
-            <h3 id="解决docker容器中的nginx代理其他容器出现404或者不通"><a href="#解决docker容器中的nginx代理其他容器出现404或者不通" class="headerlink" title="解决docker容器中的nginx代理其他容器出现404或者不通"></a>解决docker容器中的nginx代理其他容器出现404或者不通</h3>
-          </div>
-
-
-<h4 id="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络"><a href="#例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络" class="headerlink" title="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络"></a>例如下面这段dockerfile，需要指定容器在同一<font color="ff0000"><span class="label success">networks</span></font>下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络</h4></p>
-      <div class="post-button"><a class="btn" href="/2021/03/05/%E8%A7%A3%E5%86%B3docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E7%9A%84nginx%E4%BB%A3%E7%90%86%E5%85%B6%E4%BB%96%E5%AE%B9%E5%99%A8%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
     </div>
   </div>
 
