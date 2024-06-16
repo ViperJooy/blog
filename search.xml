@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Chrome104版本支持开启硬解hevc</title>
+    <url>/2022/08/11/Chrome104%E7%89%88%E6%9C%AC%E6%94%AF%E6%8C%81%E5%BC%80%E5%90%AF%E7%A1%AC%E8%A7%A3hevc/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="Chrome启动参数开启硬解hevc"><a href="#Chrome启动参数开启硬解hevc" class="headerlink" title="Chrome启动参数开启硬解hevc"></a>Chrome启动参数开启硬解hevc</h3><p>mac开启</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">open /Applications/Google\ Chrome.app/ --args --enable-features=PlatformHEVCDecoderSupport</span><br></pre></td></tr></table></figure>
+          </div>]]></content>
+      <tags>
+        <tag>chrome</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS8 安装 mysql 5.7</title>
     <url>/2021/03/15/CentOS8-%E5%AE%89%E8%A3%85-mysql-5-7/</url>
     <content><![CDATA[<div class="note success">
@@ -83,13 +93,43 @@
       </tags>
   </entry>
   <entry>
-    <title>Chrome104版本支持开启硬解hevc</title>
-    <url>/2022/08/11/Chrome104%E7%89%88%E6%9C%AC%E6%94%AF%E6%8C%81%E5%BC%80%E5%90%AF%E7%A1%AC%E8%A7%A3hevc/</url>
+    <title>rclone自动挂载</title>
+    <url>/2022/06/26/Linux%E4%B8%8Brclone%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/</url>
     <content><![CDATA[<div class="note success">
-            <h3 id="Chrome启动参数开启硬解hevc"><a href="#Chrome启动参数开启硬解hevc" class="headerlink" title="Chrome启动参数开启硬解hevc"></a>Chrome启动参数开启硬解hevc</h3><p>mac开启</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">open /Applications/Google\ Chrome.app/ --args --enable-features=PlatformHEVCDecoderSupport</span><br></pre></td></tr></table></figure>
-          </div>]]></content>
+            <h3 id="rclone自动挂载"><a href="#rclone自动挂载" class="headerlink" title="rclone自动挂载"></a>rclone自动挂载</h3>
+          </div>
+
+
+<h4 id="获取脚本"><a href="#获取脚本" class="headerlink" title="获取脚本"></a>获取脚本</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget git.io/rcloned -O rcloned</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改内容"><a href="#修改内容" class="headerlink" title="修改内容"></a>修改内容</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">NAME=&quot;onedrive&quot; #Rclone配置时填写的name</span><br><span class="line">REMOTE=&#x27;&#x27;  #远程文件夹，网盘里的挂载的一个文件夹，留空为整个网盘</span><br><span class="line">LOCAL=&#x27;/mnt/onedrive&#x27;  #挂载地址，VPS本地挂载目录</span><br></pre></td></tr></table></figure>
+
+<h4 id="设置开机自启"><a href="#设置开机自启" class="headerlink" title="设置开机自启"></a>设置开机自启</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mv rcloned /etc/init.d/rcloned</span><br><span class="line">chmod +x /etc/init.d/rcloned</span><br><span class="line">update-rc.d -f rcloned defaults # Debian/Ubuntu</span><br><span class="line">chkconfig rcloned on # Centos</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>rclone</category>
+      </categories>
       <tags>
-        <tag>chrome</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux挂载SMB网络存储</title>
+    <url>/2021/08/04/Linux%E6%8C%82%E8%BD%BDsmb%E7%BD%91%E7%BB%9C%E5%AD%98%E5%82%A8/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="Linux挂载SMB网络存储"><a href="#Linux挂载SMB网络存储" class="headerlink" title="Linux挂载SMB网络存储"></a>Linux挂载SMB网络存储</h3>
+          </div>
+
+
+<h4 id="安装cifs"><a href="#安装cifs" class="headerlink" title="安装cifs"></a>安装cifs</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt install cifs-utils --Ubuntu</span><br><span class="line">yum install cifs-utils --Centos</span><br></pre></td></tr></table></figure>
+
+<h4 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo mount -t cifs //192.168.2.20/N1-2t /mnt/sda1 -o username=username,password=password,vers=1.0,iocharset=utf8</span><br></pre></td></tr></table></figure>
+
+<h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo umount /mnt/sda1</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>SMB</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -180,46 +220,6 @@
 ]]></content>
       <categories>
         <category>filebrowser</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux挂载SMB网络存储</title>
-    <url>/2021/08/04/Linux%E6%8C%82%E8%BD%BDsmb%E7%BD%91%E7%BB%9C%E5%AD%98%E5%82%A8/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="Linux挂载SMB网络存储"><a href="#Linux挂载SMB网络存储" class="headerlink" title="Linux挂载SMB网络存储"></a>Linux挂载SMB网络存储</h3>
-          </div>
-
-
-<h4 id="安装cifs"><a href="#安装cifs" class="headerlink" title="安装cifs"></a>安装cifs</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt install cifs-utils --Ubuntu</span><br><span class="line">yum install cifs-utils --Centos</span><br></pre></td></tr></table></figure>
-
-<h4 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo mount -t cifs //192.168.2.20/N1-2t /mnt/sda1 -o username=username,password=password,vers=1.0,iocharset=utf8</span><br></pre></td></tr></table></figure>
-
-<h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo umount /mnt/sda1</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>SMB</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rclone自动挂载</title>
-    <url>/2022/06/26/Linux%E4%B8%8Brclone%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="rclone自动挂载"><a href="#rclone自动挂载" class="headerlink" title="rclone自动挂载"></a>rclone自动挂载</h3>
-          </div>
-
-
-<h4 id="获取脚本"><a href="#获取脚本" class="headerlink" title="获取脚本"></a>获取脚本</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget git.io/rcloned -O rcloned</span><br></pre></td></tr></table></figure>
-
-<h4 id="修改内容"><a href="#修改内容" class="headerlink" title="修改内容"></a>修改内容</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">NAME=&quot;onedrive&quot; #Rclone配置时填写的name</span><br><span class="line">REMOTE=&#x27;&#x27;  #远程文件夹，网盘里的挂载的一个文件夹，留空为整个网盘</span><br><span class="line">LOCAL=&#x27;/mnt/onedrive&#x27;  #挂载地址，VPS本地挂载目录</span><br></pre></td></tr></table></figure>
-
-<h4 id="设置开机自启"><a href="#设置开机自启" class="headerlink" title="设置开机自启"></a>设置开机自启</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mv rcloned /etc/init.d/rcloned</span><br><span class="line">chmod +x /etc/init.d/rcloned</span><br><span class="line">update-rc.d -f rcloned defaults # Debian/Ubuntu</span><br><span class="line">chkconfig rcloned on # Centos</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>rclone</category>
       </categories>
       <tags>
         <tag>Linux</tag>
@@ -331,65 +331,6 @@
       </tags>
   </entry>
   <entry>
-    <title>N1 使用docker搭建Jellyfin</title>
-    <url>/2021/05/19/N1-%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAjellyfin/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="N1-使用docker搭建Jellyfin"><a href="#N1-使用docker搭建Jellyfin" class="headerlink" title="N1 使用docker搭建Jellyfin"></a>N1 使用docker搭建Jellyfin</h3>
-          </div>
-
-<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>这里推荐linuxserver的镜像，支持arm64架构</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull linuxserver/jellyfin:latest</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-
-<h3 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /opt</span><br><span class="line">mkdir jellyfin</span><br><span class="line">cd jellyfin</span><br><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建docker-compose-yml文件"><a href="#创建docker-compose-yml文件" class="headerlink" title="创建docker-compose.yml文件"></a>创建docker-compose.yml文件</h3><p>推荐使用docker-compose方式构建容器，方便下次重复使用</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;2.1&quot;</span></span><br><span class="line">services:</span><br><span class="line">  jellyfin:</span><br><span class="line">    image: linuxserver/jellyfin:latest</span><br><span class="line">    container_name: jellyfin</span><br><span class="line">    environment:</span><br><span class="line">      - PUID=<span class="number">1000</span></span><br><span class="line">      - PGID=<span class="number">1000</span></span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">      - JELLYFIN_PublishedServerUrl=<span class="number">192.168</span>.<span class="number">0.5</span> <span class="comment">#optional</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./config:/config</span><br><span class="line">      - /mnt:/data</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">8096</span>:<span class="number">8096</span></span><br><span class="line">      - <span class="number">8920</span>:<span class="number">8920</span> <span class="comment">#optional</span></span><br><span class="line">      - <span class="number">7359</span>:<span class="number">7359</span>/udp <span class="comment">#optional</span></span><br><span class="line">      - <span class="number">1900</span>:<span class="number">1900</span>/udp <span class="comment">#optional</span></span><br><span class="line">    restart: unless-stopped</span><br></pre></td></tr></table></figure>
-
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-<h3 id="解决字体方块问题"><a href="#解决字体方块问题" class="headerlink" title="解决字体方块问题"></a>解决字体方块问题</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it  jellyfin /bin/bash</span><br><span class="line">apt update</span><br><span class="line">apt install fonts-noto-cjk-extra</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>jellyfin</category>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>N1</tag>
-        <tag>jellyfin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>N1 使用docker搭建emby</title>
-    <url>/2021/05/18/N1-%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAemby/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="N1-使用docker搭建emby"><a href="#N1-使用docker搭建emby" class="headerlink" title="N1 使用docker搭建emby"></a>N1 使用docker搭建emby</h3>
-          </div>
-
-<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>这里推荐linuxserver的镜像，支持arm64架构</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull linuxserver/emby:latest</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-
-<h3 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /opt</span><br><span class="line">mkdir emby</span><br><span class="line">cd emby</span><br><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建docker-compose-yml文件"><a href="#创建docker-compose-yml文件" class="headerlink" title="创建docker-compose.yml文件"></a>创建docker-compose.yml文件</h3><p>推荐使用docker-compose方式构建容器，方便下次重复使用</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;2.1&quot;</span></span><br><span class="line">services:</span><br><span class="line">  emby:</span><br><span class="line">    image: linuxserver/emby:latest</span><br><span class="line">    container_name: emby</span><br><span class="line">    environment:</span><br><span class="line">      - PUID=<span class="number">1000</span></span><br><span class="line">      - PGID=<span class="number">1000</span></span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">    volumes:</span><br><span class="line">      - ./config:/config</span><br><span class="line">      - /mnt:/data</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">8096</span>:<span class="number">8096</span></span><br><span class="line">      - <span class="number">8920</span>:<span class="number">8920</span> <span class="comment">#optional https</span></span><br><span class="line">    restart: unless-stopped</span><br></pre></td></tr></table></figure>
-
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>emby</category>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>N1</tag>
-        <tag>emby</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ubuntu、Armbian等Debian系统安装PLEX服务</title>
     <url>/2021/08/04/Ubuntu%E3%80%81Armbian%E6%90%AD%E5%BB%BAplex%E6%9C%8D%E5%8A%A1/</url>
     <content><![CDATA[<div class="note success">
@@ -432,6 +373,36 @@
       </tags>
   </entry>
   <entry>
+    <title>N1 使用docker搭建Jellyfin</title>
+    <url>/2021/05/19/N1-%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAjellyfin/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="N1-使用docker搭建Jellyfin"><a href="#N1-使用docker搭建Jellyfin" class="headerlink" title="N1 使用docker搭建Jellyfin"></a>N1 使用docker搭建Jellyfin</h3>
+          </div>
+
+<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>这里推荐linuxserver的镜像，支持arm64架构</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull linuxserver/jellyfin:latest</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h3 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /opt</span><br><span class="line">mkdir jellyfin</span><br><span class="line">cd jellyfin</span><br><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建docker-compose-yml文件"><a href="#创建docker-compose-yml文件" class="headerlink" title="创建docker-compose.yml文件"></a>创建docker-compose.yml文件</h3><p>推荐使用docker-compose方式构建容器，方便下次重复使用</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;2.1&quot;</span></span><br><span class="line">services:</span><br><span class="line">  jellyfin:</span><br><span class="line">    image: linuxserver/jellyfin:latest</span><br><span class="line">    container_name: jellyfin</span><br><span class="line">    environment:</span><br><span class="line">      - PUID=<span class="number">1000</span></span><br><span class="line">      - PGID=<span class="number">1000</span></span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">      - JELLYFIN_PublishedServerUrl=<span class="number">192.168</span>.<span class="number">0.5</span> <span class="comment">#optional</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./config:/config</span><br><span class="line">      - /mnt:/data</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">8096</span>:<span class="number">8096</span></span><br><span class="line">      - <span class="number">8920</span>:<span class="number">8920</span> <span class="comment">#optional</span></span><br><span class="line">      - <span class="number">7359</span>:<span class="number">7359</span>/udp <span class="comment">#optional</span></span><br><span class="line">      - <span class="number">1900</span>:<span class="number">1900</span>/udp <span class="comment">#optional</span></span><br><span class="line">    restart: unless-stopped</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+<h3 id="解决字体方块问题"><a href="#解决字体方块问题" class="headerlink" title="解决字体方块问题"></a>解决字体方块问题</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it  jellyfin /bin/bash</span><br><span class="line">apt update</span><br><span class="line">apt install fonts-noto-cjk-extra</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>jellyfin</category>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>N1</tag>
+        <tag>jellyfin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker搭建chevereto图床</title>
     <url>/2021/03/26/docker%E6%90%AD%E5%BB%BAchevereto%E5%9B%BE%E5%BA%8A/</url>
     <content><![CDATA[<div class="note success">
@@ -469,6 +440,35 @@
       </tags>
   </entry>
   <entry>
+    <title>N1 使用docker搭建emby</title>
+    <url>/2021/05/18/N1-%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAemby/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="N1-使用docker搭建emby"><a href="#N1-使用docker搭建emby" class="headerlink" title="N1 使用docker搭建emby"></a>N1 使用docker搭建emby</h3>
+          </div>
+
+<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>这里推荐linuxserver的镜像，支持arm64架构</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull linuxserver/emby:latest</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h3 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /opt</span><br><span class="line">mkdir emby</span><br><span class="line">cd emby</span><br><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建docker-compose-yml文件"><a href="#创建docker-compose-yml文件" class="headerlink" title="创建docker-compose.yml文件"></a>创建docker-compose.yml文件</h3><p>推荐使用docker-compose方式构建容器，方便下次重复使用</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;2.1&quot;</span></span><br><span class="line">services:</span><br><span class="line">  emby:</span><br><span class="line">    image: linuxserver/emby:latest</span><br><span class="line">    container_name: emby</span><br><span class="line">    environment:</span><br><span class="line">      - PUID=<span class="number">1000</span></span><br><span class="line">      - PGID=<span class="number">1000</span></span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">    volumes:</span><br><span class="line">      - ./config:/config</span><br><span class="line">      - /mnt:/data</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">8096</span>:<span class="number">8096</span></span><br><span class="line">      - <span class="number">8920</span>:<span class="number">8920</span> <span class="comment">#optional https</span></span><br><span class="line">    restart: unless-stopped</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>emby</category>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>N1</tag>
+        <tag>emby</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>emby使用手册</title>
     <url>/2023/03/01/emby%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
@@ -491,6 +491,19 @@
       </tags>
   </entry>
   <entry>
+    <title>解决访问github过慢以及git clone过慢的方法</title>
+    <url>/2021/03/04/github%E8%AE%BF%E9%97%AE%E6%85%A2/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="解决访问github过慢以及git-clone过慢的方法"><a href="#解决访问github过慢以及git-clone过慢的方法" class="headerlink" title="解决访问github过慢以及git clone过慢的方法"></a>解决访问github过慢以及git clone过慢的方法</h3><p>感谢🙏 <a href="https://ghproxy.com/">ghproxy</a></p><h4 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a><strong>git clone</strong></h4><p><strong>git clone</strong> <a href="https://ghproxy.com/https://github.com/stilleshan/ServerStatus">https://ghproxy.com/https://github.com/stilleshan/ServerStatus</a></p><span id="more"></span><h4 id="git-clone-私有仓库"><a href="#git-clone-私有仓库" class="headerlink" title="git clone 私有仓库"></a><strong>git clone 私有仓库</strong></h4><p>Clone 私有仓库需要用户在 <a href="https://github.com/settings/tokens">Personal access tokens</a> 申请 Token 配合使用.<br><strong>git clone</strong> https://<strong>user:your_token</strong>@ghproxy.com/<a href="https://github.com/your_name/your_private_repo">https://github.com/your_name/your_private_repo</a></p><h4 id="wget-amp-curl"><a href="#wget-amp-curl" class="headerlink" title="wget &amp; curl"></a><strong>wget &amp; curl</strong></h4><p><strong>wget</strong> <a href="https://ghproxy.com/https://github.com/stilleshan/ServerStatus/archive/master.zip">https://ghproxy.com/https://github.com/stilleshan/ServerStatus/archive/master.zip</a><br><strong>wget</strong> <a href="https://ghproxy.com/https://raw.githubusercontent.com/stilleshan/ServerStatus/master/Dockerfile">https://ghproxy.com/https://raw.githubusercontent.com/stilleshan/ServerStatus/master/Dockerfile</a><br><strong>curl -O</strong> <a href="https://ghproxy.com/https://github.com/stilleshan/ServerStatus/archive/master.zip">https://ghproxy.com/https://github.com/stilleshan/ServerStatus/archive/master.zip</a><br><strong>curl -O</strong> <a href="https://ghproxy.com/https://raw.githubusercontent.com/stilleshan/ServerStatus/master/Dockerfile">https://ghproxy.com/https://raw.githubusercontent.com/stilleshan/ServerStatus/master/Dockerfile</a></p>
+          </div>]]></content>
+      <categories>
+        <category>github</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux操作系统故障处理-ext4文件系统超级块“can&#39;t read superblock”损坏修复</title>
     <url>/2021/08/16/ext4%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%96%AD%E7%94%B5%E4%BF%AE%E5%A4%8D/</url>
     <content><![CDATA[<div class="note success">
@@ -507,16 +520,29 @@
       </tags>
   </entry>
   <entry>
-    <title>解决访问github过慢以及git clone过慢的方法</title>
-    <url>/2021/03/04/github%E8%AE%BF%E9%97%AE%E6%85%A2/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="解决访问github过慢以及git-clone过慢的方法"><a href="#解决访问github过慢以及git-clone过慢的方法" class="headerlink" title="解决访问github过慢以及git clone过慢的方法"></a>解决访问github过慢以及git clone过慢的方法</h3><p>感谢🙏 <a href="https://ghproxy.com/">ghproxy</a></p><h4 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a><strong>git clone</strong></h4><p><strong>git clone</strong> <a href="https://ghproxy.com/https://github.com/stilleshan/ServerStatus">https://ghproxy.com/https://github.com/stilleshan/ServerStatus</a></p><span id="more"></span><h4 id="git-clone-私有仓库"><a href="#git-clone-私有仓库" class="headerlink" title="git clone 私有仓库"></a><strong>git clone 私有仓库</strong></h4><p>Clone 私有仓库需要用户在 <a href="https://github.com/settings/tokens">Personal access tokens</a> 申请 Token 配合使用.<br><strong>git clone</strong> https://<strong>user:your_token</strong>@ghproxy.com/<a href="https://github.com/your_name/your_private_repo">https://github.com/your_name/your_private_repo</a></p><h4 id="wget-amp-curl"><a href="#wget-amp-curl" class="headerlink" title="wget &amp; curl"></a><strong>wget &amp; curl</strong></h4><p><strong>wget</strong> <a href="https://ghproxy.com/https://github.com/stilleshan/ServerStatus/archive/master.zip">https://ghproxy.com/https://github.com/stilleshan/ServerStatus/archive/master.zip</a><br><strong>wget</strong> <a href="https://ghproxy.com/https://raw.githubusercontent.com/stilleshan/ServerStatus/master/Dockerfile">https://ghproxy.com/https://raw.githubusercontent.com/stilleshan/ServerStatus/master/Dockerfile</a><br><strong>curl -O</strong> <a href="https://ghproxy.com/https://github.com/stilleshan/ServerStatus/archive/master.zip">https://ghproxy.com/https://github.com/stilleshan/ServerStatus/archive/master.zip</a><br><strong>curl -O</strong> <a href="https://ghproxy.com/https://raw.githubusercontent.com/stilleshan/ServerStatus/master/Dockerfile">https://ghproxy.com/https://raw.githubusercontent.com/stilleshan/ServerStatus/master/Dockerfile</a></p>
-          </div>]]></content>
+    <title>Hello World</title>
+    <url>/2021/01/01/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><span id="more"></span>
+
+<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
       <categories>
-        <category>github</category>
+        <category>hexo</category>
       </categories>
       <tags>
-        <tag>github</tag>
+        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -545,32 +571,6 @@
       <tags>
         <tag>Linux</tag>
         <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/01/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><span id="more"></span>
-
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -604,6 +604,45 @@
       <tags>
         <tag>java</tag>
         <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决docker容器中的nginx代理其他容器的各种问题</title>
+    <url>/2021/03/05/%E8%A7%A3%E5%86%B3docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E7%9A%84nginx%E4%BB%A3%E7%90%86%E5%85%B6%E4%BB%96%E5%AE%B9%E5%99%A8%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="解决docker容器中的nginx代理其他容器出现404或者不通"><a href="#解决docker容器中的nginx代理其他容器出现404或者不通" class="headerlink" title="解决docker容器中的nginx代理其他容器出现404或者不通"></a>解决docker容器中的nginx代理其他容器出现404或者不通</h3>
+          </div>
+
+
+<h4 id="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络"><a href="#例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络" class="headerlink" title="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络"></a>例如下面这段dockerfile，需要指定容器在同一<font color="ff0000"><span class="label success">networks</span></font>下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络</h4><span id="more"></span>
+
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line">services:</span><br><span class="line">  nginx:</span><br><span class="line">    container_name: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">    restart: <span class="string">&#x27;always&#x27;</span></span><br><span class="line">    image: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">    networks:</span><br><span class="line">      - frontend</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&#x27;80:80&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;443:443&#x27;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - <span class="string">&#x27;/home/nginx/www:/usr/share/nginx/html&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;/home/nginx/log:/var/log/nginx/&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;/home/nginx/conf:/etc/nginx/conf.d&#x27;</span></span><br><span class="line"></span><br><span class="line">  music:</span><br><span class="line">    container_name: <span class="string">&#x27;music&#x27;</span></span><br><span class="line">    restart: <span class="string">&#x27;always&#x27;</span></span><br><span class="line">    image: <span class="string">&#x27;binaryify/netease_cloud_music_api&#x27;</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&#x27;3000:3000&#x27;</span></span><br><span class="line">    networks:</span><br><span class="line">      - frontend</span><br><span class="line">networks:</span><br><span class="line">  frontend:</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="查看容器信息命令，可以获取容器ip等信息"><a href="#查看容器信息命令，可以获取容器ip等信息" class="headerlink" title="查看容器信息命令，可以获取容器ip等信息"></a>查看容器信息命令，可以获取容器ip等信息</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker inspect container</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vercel免费部署hexo</title>
+    <url>/2021/01/02/%E4%BD%BF%E7%94%A8vercel%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2github%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="注册-vercel"><a href="#注册-vercel" class="headerlink" title="注册 vercel"></a>注册 vercel</h3><p> 打开<a href="https://vercel.com/">vercel.com</a>注册一个新账户，注册新用户必须使用 <a href="https://github.com/">github</a> 账户进行授权，后续可以选择 <a href="https://github.com/">github</a> 上的项目直接部署。</p><span id="more"></span><h3 id="安装-hexo-cli"><a href="#安装-hexo-cli" class="headerlink" title="安装 hexo-cli"></a>安装 hexo-cli</h3><p>在安装 hexo-cli 前，需要保证电脑安装了 nodejs。<br>nodejs 需要在<a href="https://nodejs.org/zh-cn/">node 官网</a>下载，安装好 nodejs 后，也会相应的安装上 npm，接下来就可以安装 hexo-cli 了。</p><p>安装命令：<code>npm install hexo-cli -g</code></p><p>检测是否安装成功，在终端执行：<code>hexo -v</code>命令，如果出现以下内容则表示安装成功。</p><img src="https://pic.rmb.bdstatic.com/bjh/053d1856c504cab7166088ba1e46296a.png" height="250" width="250"><h3 id="vercel-hexo-创建项目"><a href="#vercel-hexo-创建项目" class="headerlink" title="vercel+hexo 创建项目"></a>vercel+hexo 创建项目</h3><ul><li>登陆系统后点击<code>new project</code>，创建新项目</li><li>Import Git Repository，选择从github绑定的账号下面的hexo项目，点击 <a class="btn" href="https://vercel.com/new" title="title"><i class="fa fa-hand-o-right fa-fw"></i>Import</a></li><li>PROJECT NAME 自己取名</li><li>FRAMEWORK PRESET 选择HEXO</li><li>点击deploy</li></ul><br><h3 id="附hexo基本命令"><a href="#附hexo基本命令" class="headerlink" title="附hexo基本命令"></a>附hexo基本命令</h3><ul><li>新建文章：<code>hexo new 名称</code>或<code>hexo n 名称</code></li><li>运行本地服务器（预览）：<code>hexo s</code></li><li>生成静态文件：<code>hexo g</code></li><li>清除已生成文件：<code>hexo clean</code></li><li>部署到服务器：<code>hexo d</code></li><li>生成并部署文件：<code>hexo g -d</code>或<code>hexo d -g</code></li></ul><br><h5 id="本博客部署在vercel上"><a href="#本博客部署在vercel上" class="headerlink" title="本博客部署在vercel上"></a>本博客部署在vercel上</h5>
+          </div>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+        <tag>blog</tag>
+        <tag>vercel</tag>
       </tags>
   </entry>
   <entry>
@@ -652,8 +691,8 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>SSL</tag>
         <tag>nginx</tag>
+        <tag>SSL</tag>
       </tags>
   </entry>
   <entry>
@@ -664,45 +703,6 @@
           </div>]]></content>
       <tags>
         <tag>macos</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vercel免费部署hexo</title>
-    <url>/2021/01/02/%E4%BD%BF%E7%94%A8vercel%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2github%E9%A1%B9%E7%9B%AE/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="注册-vercel"><a href="#注册-vercel" class="headerlink" title="注册 vercel"></a>注册 vercel</h3><p> 打开<a href="https://vercel.com/">vercel.com</a>注册一个新账户，注册新用户必须使用 <a href="https://github.com/">github</a> 账户进行授权，后续可以选择 <a href="https://github.com/">github</a> 上的项目直接部署。</p><span id="more"></span><h3 id="安装-hexo-cli"><a href="#安装-hexo-cli" class="headerlink" title="安装 hexo-cli"></a>安装 hexo-cli</h3><p>在安装 hexo-cli 前，需要保证电脑安装了 nodejs。<br>nodejs 需要在<a href="https://nodejs.org/zh-cn/">node 官网</a>下载，安装好 nodejs 后，也会相应的安装上 npm，接下来就可以安装 hexo-cli 了。</p><p>安装命令：<code>npm install hexo-cli -g</code></p><p>检测是否安装成功，在终端执行：<code>hexo -v</code>命令，如果出现以下内容则表示安装成功。</p><img src="https://pic.rmb.bdstatic.com/bjh/053d1856c504cab7166088ba1e46296a.png" height="250" width="250"><h3 id="vercel-hexo-创建项目"><a href="#vercel-hexo-创建项目" class="headerlink" title="vercel+hexo 创建项目"></a>vercel+hexo 创建项目</h3><ul><li>登陆系统后点击<code>new project</code>，创建新项目</li><li>Import Git Repository，选择从github绑定的账号下面的hexo项目，点击 <a class="btn" href="https://vercel.com/new" title="title"><i class="fa fa-hand-o-right fa-fw"></i>Import</a></li><li>PROJECT NAME 自己取名</li><li>FRAMEWORK PRESET 选择HEXO</li><li>点击deploy</li></ul><br><h3 id="附hexo基本命令"><a href="#附hexo基本命令" class="headerlink" title="附hexo基本命令"></a>附hexo基本命令</h3><ul><li>新建文章：<code>hexo new 名称</code>或<code>hexo n 名称</code></li><li>运行本地服务器（预览）：<code>hexo s</code></li><li>生成静态文件：<code>hexo g</code></li><li>清除已生成文件：<code>hexo clean</code></li><li>部署到服务器：<code>hexo d</code></li><li>生成并部署文件：<code>hexo g -d</code>或<code>hexo d -g</code></li></ul><br><h5 id="本博客部署在vercel上"><a href="#本博客部署在vercel上" class="headerlink" title="本博客部署在vercel上"></a>本博客部署在vercel上</h5>
-          </div>]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>github</tag>
-        <tag>blog</tag>
-        <tag>vercel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决docker容器中的nginx代理其他容器的各种问题</title>
-    <url>/2021/03/05/%E8%A7%A3%E5%86%B3docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E7%9A%84nginx%E4%BB%A3%E7%90%86%E5%85%B6%E4%BB%96%E5%AE%B9%E5%99%A8%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="解决docker容器中的nginx代理其他容器出现404或者不通"><a href="#解决docker容器中的nginx代理其他容器出现404或者不通" class="headerlink" title="解决docker容器中的nginx代理其他容器出现404或者不通"></a>解决docker容器中的nginx代理其他容器出现404或者不通</h3>
-          </div>
-
-
-<h4 id="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络"><a href="#例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络" class="headerlink" title="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络"></a>例如下面这段dockerfile，需要指定容器在同一<font color="ff0000"><span class="label success">networks</span></font>下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络</h4><span id="more"></span>
-
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line">services:</span><br><span class="line">  nginx:</span><br><span class="line">    container_name: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">    restart: <span class="string">&#x27;always&#x27;</span></span><br><span class="line">    image: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">    networks:</span><br><span class="line">      - frontend</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&#x27;80:80&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;443:443&#x27;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - <span class="string">&#x27;/home/nginx/www:/usr/share/nginx/html&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;/home/nginx/log:/var/log/nginx/&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;/home/nginx/conf:/etc/nginx/conf.d&#x27;</span></span><br><span class="line"></span><br><span class="line">  music:</span><br><span class="line">    container_name: <span class="string">&#x27;music&#x27;</span></span><br><span class="line">    restart: <span class="string">&#x27;always&#x27;</span></span><br><span class="line">    image: <span class="string">&#x27;binaryify/netease_cloud_music_api&#x27;</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&#x27;3000:3000&#x27;</span></span><br><span class="line">    networks:</span><br><span class="line">      - frontend</span><br><span class="line">networks:</span><br><span class="line">  frontend:</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="查看容器信息命令，可以获取容器ip等信息"><a href="#查看容器信息命令，可以获取容器ip等信息" class="headerlink" title="查看容器信息命令，可以获取容器ip等信息"></a>查看容器信息命令，可以获取容器ip等信息</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker inspect container</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>nginx</tag>
       </tags>
   </entry>
 </search>

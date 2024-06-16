@@ -171,7 +171,7 @@
 <h4 id="修改内容"><a href="#修改内容" class="headerlink" title="修改内容"></a>修改内容</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NAME=&quot;onedrive&quot; #Rclone配置时填写的name</span><br><span class="line">REMOTE=&#x27;&#x27;  #远程文件夹，网盘里的挂载的一个文件夹，留空为整个网盘</span><br><span class="line">LOCAL=&#x27;/mnt/onedrive&#x27;  #挂载地址，VPS本地挂载目录</span><br></pre></td></tr></table></figure>
 
 <h4 id="设置开机自启"><a href="#设置开机自启" class="headerlink" title="设置开机自启"></a>设置开机自启</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mv rcloned /etc/init.d/rcloned</span><br><span class="line">chmod +x /etc/init.d/rcloned</span><br><span class="line">update-rc.d -f rcloned defaults # Debian/Ubuntu</span><br><span class="line">chkconfig rcloned on # Centos</span><br></pre></td></tr></table></figure></p>
-      <div class="post-button"><a class="btn" href="/2022/06/26/Linux%E4%B8%8Brclone%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
+      <div class="post-button"><a class="btn" href="/2022/06/26/Linux%E4%B8%8Brclone%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>阅读更多</a></div>
     </div>
   </div>
   <div class="lx-entry padding">
@@ -183,7 +183,7 @@
           </div>
 
 <h4 id="获取acme脚本"><a href="#获取acme脚本" class="headerlink" title="获取acme脚本"></a>获取acme脚本</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl https://get.acme.sh | sh</span><br></pre></td></tr></table></figure></p>
-      <div class="post-button"><a class="btn" href="/2022/06/25/%E4%BD%BF%E7%94%A8acme%E7%94%B3%E8%AF%B7%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
+      <div class="post-button"><a class="btn" href="/2022/06/25/%E4%BD%BF%E7%94%A8acme%E7%94%B3%E8%AF%B7%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>阅读更多</a></div>
     </div>
   </div>
   <div class="lx-entry padding">
@@ -195,7 +195,7 @@
           </div>
 
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f avfoundation -framerate 30 -i &quot;1:0&quot; \</span><br><span class="line">-f avfoundation -framerate 30 -video_size 640x480 -i &quot;0&quot; \</span><br><span class="line">-c:v libx264 -preset ultrafast \</span><br><span class="line">-filter_complex &#x27;overlay=main_w-overlay_w-10:main_h-overlay_h-10&#x27; \</span><br><span class="line">-acodec libmp3lame -ar 44100 -ac 1 \</span><br><span class="line">-f flv rtmp://localhost/live1/room1</span><br></pre></td></tr></table></figure></p>
-      <div class="post-button"><a class="btn" href="/2021/10/15/mac%E4%B8%8B%E4%BD%BF%E7%94%A8ffmpeg%E8%B0%83%E7%94%A8%E6%91%84%E5%83%8F%E5%A4%B4%E6%8E%A8%E6%B5%81/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
+      <div class="post-button"><a class="btn" href="/2021/10/15/mac%E4%B8%8B%E4%BD%BF%E7%94%A8ffmpeg%E8%B0%83%E7%94%A8%E6%91%84%E5%83%8F%E5%A4%B4%E6%8E%A8%E6%B5%81/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>阅读更多</a></div>
     </div>
   </div>
   <div class="lx-entry padding">
@@ -209,7 +209,7 @@
 
 
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><h2 id="File-Browser-是一个基于-Web-的文件管理器。它可以使你随时随地的对某一目录下设备的文件进行基本的管理操作，如：创建、删除、移动、复制等。同时它还支持多个用户的管理，而且每个用户可以拥有自己可以访问的文件和权限等十分丰富的特性。"><a href="#File-Browser-是一个基于-Web-的文件管理器。它可以使你随时随地的对某一目录下设备的文件进行基本的管理操作，如：创建、删除、移动、复制等。同时它还支持多个用户的管理，而且每个用户可以拥有自己可以访问的文件和权限等十分丰富的特性。" class="headerlink" title="File Browser 是一个基于 Web 的文件管理器。它可以使你随时随地的对某一目录下设备的文件进行基本的管理操作，如：创建、删除、移动、复制等。同时它还支持多个用户的管理，而且每个用户可以拥有自己可以访问的文件和权限等十分丰富的特性。"></a>File Browser 是一个基于 Web 的文件管理器。它可以使你随时随地的对某一目录下设备的文件进行基本的管理操作，如：创建、删除、移动、复制等。同时它还支持多个用户的管理，而且每个用户可以拥有自己可以访问的文件和权限等十分丰富的特性。</h2></p>
-      <div class="post-button"><a class="btn" href="/2021/09/07/File%20Browser%20%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
+      <div class="post-button"><a class="btn" href="/2021/09/07/File%20Browser%20%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>阅读更多</a></div>
     </div>
   </div>
   <div class="lx-entry padding">
@@ -219,7 +219,7 @@
       <p><div class="note success">
             <h3 id="Centos7-6安装ffmpeg"><a href="#Centos7-6安装ffmpeg" class="headerlink" title="Centos7.6安装ffmpeg"></a>Centos7.6安装ffmpeg</h3>
           </div></p>
-      <div class="post-button"><a class="btn" href="/2021/08/18/centos7%E5%AE%89%E8%A3%85ffmpeg/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
+      <div class="post-button"><a class="btn" href="/2021/08/18/centos7%E5%AE%89%E8%A3%85ffmpeg/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>阅读更多</a></div>
     </div>
   </div>
 
@@ -237,7 +237,6 @@
   </div>
 </div>
 </div>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "995a79056a3b4157a29bfaceb2105ada"}'></script><!-- End Cloudflare Web Analytics -->
 
 <button class="hamburger hamburger--arrow-r" type="button">
     <div class="hamburger-box">
@@ -262,21 +261,21 @@
   </div>
   <nav class="menu-container">
   <ul class="menu-items">
-    <li><a href="/"><i class="fa fa-home fa-fw"></i>Home</a></li>
-    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>首页</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>归档</a></li>
     <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-th-list fa-fw"></i>Categories</span>
+      <i class="fa fa-th-list fa-fw"></i>分类</span>
         <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SMB/">SMB</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/centos/">centos</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/centos/ffmpeg/">ffmpeg</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/docker/%E5%9B%BE%E5%BA%8A/">图床</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/emby/">emby</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/emby/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/filebrowser/">filebrowser</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jellyfin/">jellyfin</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jellyfin/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/mysql/">mysql</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/plex/">plex</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/plex/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/qbittorrent/">qbittorrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/rclone/">rclone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%A8%E6%B5%81/">推流</a></li></ul>
     </li>
     <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-bookmark fa-fw"></i>Pages</span>
+      <i class="fa fa-bookmark fa-fw"></i>页面</span>
         <ul>
           <li><a href="/about/">About</a></li>
         <li><a href="/guestbook/">Guestbook</a></li>
         </ul>
     </li>
     <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-link fa-fw"></i>Friends</span>
+      <i class="fa fa-link fa-fw"></i>友链</span>
         <ul>
           <li> <a href="https://lx.js.org" target="_blank">Theme-Lx</a></li>
         </ul>
