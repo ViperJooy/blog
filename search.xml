@@ -226,6 +226,111 @@
       </tags>
   </entry>
   <entry>
+    <title>N1 使用docker搭建plex</title>
+    <url>/2021/05/20/N1-%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAplex/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="N1-使用docker搭建plex"><a href="#N1-使用docker搭建plex" class="headerlink" title="N1 使用docker搭建plex"></a>N1 使用docker搭建plex</h3>
+          </div>
+
+<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>这里推荐linuxserver的镜像，支持arm64架构</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull linuxserver/plex:latest</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+
+
+<h3 id="获取Claim-Code"><a href="#获取Claim-Code" class="headerlink" title="获取Claim Code"></a>获取Claim Code</h3><p>浏览器访问 <a href="https://www.plex.tv/claim/">https://www.plex.tv/claim/</a> 获得Claim Code</p>
+<h3 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /opt</span><br><span class="line">mkdir plex</span><br><span class="line">cd plex</span><br><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="创建docker-compose-yml文件"><a href="#创建docker-compose-yml文件" class="headerlink" title="创建docker-compose.yml文件"></a>创建docker-compose.yml文件</h3><p>推荐使用docker-compose方式构建容器，方便下次重复使用</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;2.1&quot;</span></span><br><span class="line">services:</span><br><span class="line">  plex:</span><br><span class="line">    image: linuxserver/plex:latest</span><br><span class="line">    container_name: plex</span><br><span class="line">    network_mode: host</span><br><span class="line">    environment:</span><br><span class="line">      - PUID=<span class="number">1000</span></span><br><span class="line">      - PGID=<span class="number">1000</span></span><br><span class="line">      - VERSION=docker</span><br><span class="line">      - PLEX_CLAIM= <span class="comment">#填入获取到的claim code</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./config:/config</span><br><span class="line">      - /mnt:/data</span><br><span class="line">    restart: unless-stopped</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>plex</category>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>N1</tag>
+        <tag>plex</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>N1 使用docker搭建qbittorrent</title>
+    <url>/2021/05/21/N1-%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAqbittorrent/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="N1-使用docker搭建qbittorrent"><a href="#N1-使用docker搭建qbittorrent" class="headerlink" title="N1 使用docker搭建qbittorrent"></a>N1 使用docker搭建qbittorrent</h3>
+          </div>
+
+<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>这里推荐linuxserver的镜像，支持arm64架构</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull linuxserver/qbittorrent:latest</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h3 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /opt</span><br><span class="line">mkdir qbittorrent</span><br><span class="line">cd qbittorrent</span><br><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建docker-compose-yml文件"><a href="#创建docker-compose-yml文件" class="headerlink" title="创建docker-compose.yml文件"></a>创建docker-compose.yml文件</h3><p>推荐使用docker-compose方式构建容器，方便下次重复使用</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;2.1&quot;</span></span><br><span class="line">services:</span><br><span class="line">  qbittorrent:</span><br><span class="line">    image: linuxserver/qbittorrent:latest</span><br><span class="line">    container_name: qbittorrent</span><br><span class="line">    environment:</span><br><span class="line">      - PUID=<span class="number">1000</span></span><br><span class="line">      - PGID=<span class="number">1000</span></span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">      - WEBUI_PORT=<span class="number">8080</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./config:/config</span><br><span class="line">      - /mnt:/mnt</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">18080</span>:<span class="number">8080</span></span><br><span class="line">      - <span class="number">16881</span>:<span class="number">6881</span></span><br><span class="line">      - <span class="number">16881</span>:<span class="number">6881</span>/udp</span><br><span class="line">    restart: unless-stopped</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>qbittorrent</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>N1</tag>
+        <tag>qbittorrent</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Oracle Cloud 相关操作</title>
+    <url>/2022/08/23/Oracle%20Cloud%20%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="Oracle-Cloud-关闭防火墙"><a href="#Oracle-Cloud-关闭防火墙" class="headerlink" title="Oracle Cloud 关闭防火墙"></a>Oracle Cloud 关闭防火墙</h3>
+          </div>
+
+<span id="more"></span>
+
+<ul>
+<li><h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">iptables -P INPUT ACCEPT</span><br><span class="line">iptables -P FORWARD ACCEPT</span><br><span class="line">iptables -P OUTPUT ACCEPT</span><br><span class="line">iptables -F</span><br><span class="line"></span><br><span class="line">apt-get purge netfilter-persistent</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h3 id="Centos"><a href="#Centos" class="headerlink" title="Centos"></a>Centos</h3></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 删除多余附件</span><br><span class="line">systemctl stop oracle-cloud-agent</span><br><span class="line">systemctl disable oracle-cloud-agent</span><br><span class="line">systemctl stop oracle-cloud-agent-updater</span><br><span class="line">systemctl disable oracle-cloud-agent-updater</span><br><span class="line"></span><br><span class="line"># 关闭防火墙并禁止自启动</span><br><span class="line">systemctl stop firewalld.service</span><br><span class="line">systemctl disable firewalld.service</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<div class="note success">
+            <h3 id="Oracle-Cloud-开启root登录"><a href="#Oracle-Cloud-开启root登录" class="headerlink" title="Oracle Cloud 开启root登录"></a>Oracle Cloud 开启root登录</h3>
+          </div>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo root:password |sudo chpasswd root</span><br><span class="line">sudo sed -i &#x27;s/^#\?PermitRootLogin.*/PermitRootLogin yes/g&#x27; /etc/ssh/sshd_config;</span><br><span class="line">sudo sed -i &#x27;s/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g&#x27; /etc/ssh/sshd_config;</span><br><span class="line">sudo service sshd restart</span><br><span class="line"></span><br><span class="line">重启sshd服务</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
+
+
+
+<div class="note success">
+            <h3 id="Oracle-Cloud-vps扩容"><a href="#Oracle-Cloud-vps扩容" class="headerlink" title="Oracle Cloud vps扩容"></a>Oracle Cloud vps扩容</h3>
+          </div>
+
+
+<p><code>点击Boot Volume</code><br><code>编辑卷大小</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo dd iflag=direct if=/dev/oracleoci/oraclevda of=/dev/null count=1</span><br><span class="line">echo &quot;1&quot; | sudo tee /sys/class/block/`readlink /dev/oracleoci/oraclevda | cut -d&#x27;/&#x27; -f 2`/device/rescan</span><br><span class="line"></span><br><span class="line">growpart /dev/sda1 </span><br><span class="line"></span><br><span class="line">resize2fs /dev/sda1</span><br><span class="line"></span><br><span class="line">df -h</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Oracle Cloud</tag>
+        <tag>防火墙</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>N1 使用docker搭建Jellyfin</title>
     <url>/2021/05/19/N1-%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAjellyfin/</url>
     <content><![CDATA[<div class="note success">
@@ -285,108 +390,45 @@
       </tags>
   </entry>
   <entry>
-    <title>N1 使用docker搭建qbittorrent</title>
-    <url>/2021/05/21/N1-%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAqbittorrent/</url>
+    <title>Ubuntu、Armbian等Debian系统安装PLEX服务</title>
+    <url>/2021/08/04/Ubuntu%E3%80%81Armbian%E6%90%AD%E5%BB%BAplex%E6%9C%8D%E5%8A%A1/</url>
     <content><![CDATA[<div class="note success">
-            <h3 id="N1-使用docker搭建qbittorrent"><a href="#N1-使用docker搭建qbittorrent" class="headerlink" title="N1 使用docker搭建qbittorrent"></a>N1 使用docker搭建qbittorrent</h3>
+            <h3 id="Ubuntu、Armbian等Debian系统安装PLEX服务"><a href="#Ubuntu、Armbian等Debian系统安装PLEX服务" class="headerlink" title="Ubuntu、Armbian等Debian系统安装PLEX服务"></a>Ubuntu、Armbian等Debian系统安装PLEX服务</h3>
           </div>
 
-<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>这里推荐linuxserver的镜像，支持arm64架构</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull linuxserver/qbittorrent:latest</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-
-<h3 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /opt</span><br><span class="line">mkdir qbittorrent</span><br><span class="line">cd qbittorrent</span><br><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建docker-compose-yml文件"><a href="#创建docker-compose-yml文件" class="headerlink" title="创建docker-compose.yml文件"></a>创建docker-compose.yml文件</h3><p>推荐使用docker-compose方式构建容器，方便下次重复使用</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;2.1&quot;</span></span><br><span class="line">services:</span><br><span class="line">  qbittorrent:</span><br><span class="line">    image: linuxserver/qbittorrent:latest</span><br><span class="line">    container_name: qbittorrent</span><br><span class="line">    environment:</span><br><span class="line">      - PUID=<span class="number">1000</span></span><br><span class="line">      - PGID=<span class="number">1000</span></span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">      - WEBUI_PORT=<span class="number">8080</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./config:/config</span><br><span class="line">      - /mnt:/mnt</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">18080</span>:<span class="number">8080</span></span><br><span class="line">      - <span class="number">16881</span>:<span class="number">6881</span></span><br><span class="line">      - <span class="number">16881</span>:<span class="number">6881</span>/udp</span><br><span class="line">    restart: unless-stopped</span><br></pre></td></tr></table></figure>
-
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>qbittorrent</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>N1</tag>
-        <tag>qbittorrent</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>N1 使用docker搭建plex</title>
-    <url>/2021/05/20/N1-%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAplex/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="N1-使用docker搭建plex"><a href="#N1-使用docker搭建plex" class="headerlink" title="N1 使用docker搭建plex"></a>N1 使用docker搭建plex</h3>
+<div class="note success">
+            <h3 id="使用-deb文件安装方式"><a href="#使用-deb文件安装方式" class="headerlink" title="使用 deb文件安装方式"></a>使用 deb文件安装方式</h3><ul><li><p>访问 <a href="https://www.plex.tv/media-server-downloads/#plex-media-server">plex downlod</a> 页面 </p></li><li><p>选择linux-&gt;<a href="https://downloads.plex.tv/plex-media-server-new/1.27.0.5897-3940636f2/debian/plexmediaserver_1.27.0.5897-3940636f2_amd64.deb">Ubuntu (16.04+) / Debian (8+) - Intel/AMD 64-bit</a> 下载 .deb文件</p></li></ul><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dpkg -i plexmediaserver.deb</span><br></pre></td></tr></table></figure>
           </div>
-
-<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>这里推荐linuxserver的镜像，支持arm64架构</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull linuxserver/plex:latest</span><br></pre></td></tr></table></figure>
 
 <span id="more"></span>
 
-
-
-<h3 id="获取Claim-Code"><a href="#获取Claim-Code" class="headerlink" title="获取Claim Code"></a>获取Claim Code</h3><p>浏览器访问 <a href="https://www.plex.tv/claim/">https://www.plex.tv/claim/</a> 获得Claim Code</p>
-<h3 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /opt</span><br><span class="line">mkdir plex</span><br><span class="line">cd plex</span><br><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="创建docker-compose-yml文件"><a href="#创建docker-compose-yml文件" class="headerlink" title="创建docker-compose.yml文件"></a>创建docker-compose.yml文件</h3><p>推荐使用docker-compose方式构建容器，方便下次重复使用</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;2.1&quot;</span></span><br><span class="line">services:</span><br><span class="line">  plex:</span><br><span class="line">    image: linuxserver/plex:latest</span><br><span class="line">    container_name: plex</span><br><span class="line">    network_mode: host</span><br><span class="line">    environment:</span><br><span class="line">      - PUID=<span class="number">1000</span></span><br><span class="line">      - PGID=<span class="number">1000</span></span><br><span class="line">      - VERSION=docker</span><br><span class="line">      - PLEX_CLAIM= <span class="comment">#填入获取到的claim code</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./config:/config</span><br><span class="line">      - /mnt:/data</span><br><span class="line">    restart: unless-stopped</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-]]></content>
+<div class="note success">
+            <h3 id="使用Plex存储库"><a href="#使用Plex存储库" class="headerlink" title="使用Plex存储库"></a>使用Plex存储库</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -</span><br></pre></td></tr></table></figure><h4 id><a href="#" class="headerlink" title></a></h4><p>将存储库添加到系统</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list</span><br></pre></td></tr></table></figure><h4 id="-1"><a href="#-1" class="headerlink" title></a></h4><p>更新apt缓存</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure><!--more--><h4 id="-2"><a href="#-2" class="headerlink" title></a></h4><p>安装plex</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install plexmediaserver</span><br></pre></td></tr></table></figure><h4 id="-3"><a href="#-3" class="headerlink" title></a></h4><p>查看plex服务状态</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl status plexmediaserver.service</span><br></pre></td></tr></table></figure><h4 id="-4"><a href="#-4" class="headerlink" title></a></h4><p>卸载plex服务</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt remove plexmediaserver</span><br></pre></td></tr></table></figure><h4 id="-5"><a href="#-5" class="headerlink" title></a></h4><p>plex默认访问地址 <a href="http://127.0.0.1:32400/web">http://127.0.0.1:32400/web</a></p>
+          </div>]]></content>
       <categories>
         <category>plex</category>
-        <category>docker</category>
       </categories>
       <tags>
-        <tag>docker</tag>
-        <tag>N1</tag>
-        <tag>plex</tag>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
-    <title>Oracle Cloud 相关操作</title>
-    <url>/2022/08/23/Oracle%20Cloud%20%E7%9B%B8%E5%85%B3/</url>
+    <title>Centos7.6安装ffmpeg</title>
+    <url>/2021/08/18/centos7%E5%AE%89%E8%A3%85ffmpeg/</url>
     <content><![CDATA[<div class="note success">
-            <h3 id="Oracle-Cloud-关闭防火墙"><a href="#Oracle-Cloud-关闭防火墙" class="headerlink" title="Oracle Cloud 关闭防火墙"></a>Oracle Cloud 关闭防火墙</h3>
+            <h3 id="Centos7-6安装ffmpeg"><a href="#Centos7-6安装ffmpeg" class="headerlink" title="Centos7.6安装ffmpeg"></a>Centos7.6安装ffmpeg</h3>
           </div>
 
 <span id="more"></span>
 
-<ul>
-<li><h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">iptables -P INPUT ACCEPT</span><br><span class="line">iptables -P FORWARD ACCEPT</span><br><span class="line">iptables -P OUTPUT ACCEPT</span><br><span class="line">iptables -F</span><br><span class="line"></span><br><span class="line">apt-get purge netfilter-persistent</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><h3 id="Centos"><a href="#Centos" class="headerlink" title="Centos"></a>Centos</h3></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 删除多余附件</span><br><span class="line">systemctl stop oracle-cloud-agent</span><br><span class="line">systemctl disable oracle-cloud-agent</span><br><span class="line">systemctl stop oracle-cloud-agent-updater</span><br><span class="line">systemctl disable oracle-cloud-agent-updater</span><br><span class="line"></span><br><span class="line"># 关闭防火墙并禁止自启动</span><br><span class="line">systemctl stop firewalld.service</span><br><span class="line">systemctl disable firewalld.service</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<div class="note success">
-            <h3 id="Oracle-Cloud-开启root登录"><a href="#Oracle-Cloud-开启root登录" class="headerlink" title="Oracle Cloud 开启root登录"></a>Oracle Cloud 开启root登录</h3>
-          </div>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo root:password |sudo chpasswd root</span><br><span class="line">sudo sed -i &#x27;s/^#\?PermitRootLogin.*/PermitRootLogin yes/g&#x27; /etc/ssh/sshd_config;</span><br><span class="line">sudo sed -i &#x27;s/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g&#x27; /etc/ssh/sshd_config;</span><br><span class="line">sudo service sshd restart</span><br><span class="line"></span><br><span class="line">重启sshd服务</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
-
-
-
-<div class="note success">
-            <h3 id="Oracle-Cloud-vps扩容"><a href="#Oracle-Cloud-vps扩容" class="headerlink" title="Oracle Cloud vps扩容"></a>Oracle Cloud vps扩容</h3>
-          </div>
-
-
-<p><code>点击Boot Volume</code><br><code>编辑卷大小</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo dd iflag=direct if=/dev/oracleoci/oraclevda of=/dev/null count=1</span><br><span class="line">echo &quot;1&quot; | sudo tee /sys/class/block/`readlink /dev/oracleoci/oraclevda | cut -d&#x27;/&#x27; -f 2`/device/rescan</span><br><span class="line"></span><br><span class="line">growpart /dev/sda1 </span><br><span class="line"></span><br><span class="line">resize2fs /dev/sda1</span><br><span class="line"></span><br><span class="line">df -h</span><br></pre></td></tr></table></figure>
-]]></content>
+<h4 id="安装脚本命令"><a href="#安装脚本命令" class="headerlink" title="安装脚本命令"></a>安装脚本命令</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装 ffmpeg(从git下载太慢了,建议其他地方下载然后在上传)(过程挺大)</span></span><br><span class="line">rm -rf /usr/local/ffmpeg</span><br><span class="line">mkdir /usr/local/ffmpeg</span><br><span class="line">cd /usr/local/ffmpeg</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">git <span class="built_in">clone</span> https://git.ffmpeg.org/ffmpeg.git ffmpeg</span></span><br><span class="line">wget http://ffmpeg.org/releases/ffmpeg-4.3.1.tar.gz</span><br><span class="line">tar xvf ffmpeg-4.3.1.tar.gz</span><br><span class="line">cd ffmpeg-4.3.1</span><br><span class="line">./configure --enable-shared --prefix=/usr/local/ffmpeg --disable-yasm</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 添加动态库路径</span></span></span><br><span class="line">touch  /etc/ld.so.conf.d/fmpeg.conf</span><br><span class="line">echo &#x27;/usr/local/ffmpeg/lib&#x27; &gt;&gt; /etc/ld.so.conf.d/fmpeg.conf</span><br><span class="line">ldconfig -v</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 软连接</span></span></span><br><span class="line">rm -rf /usr/bin/ffmpeg</span><br><span class="line">ln -s /usr/local/ffmpeg/bin/ffmpeg /usr/bin/ffmpeg</span><br><span class="line">rm -rf /usr/bin/ffprobe</span><br><span class="line">ln -s /usr/local/ffmpeg/bin/ffprobe /usr/bin/ffprobe</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 头文件</span></span></span><br><span class="line">cd /usr/local/ffmpeg/include/</span><br><span class="line">mkdir ffmpeg</span><br><span class="line">cp -r libswscale/ /usr/local/ffmpeg/include/ffmpeg/</span><br><span class="line">cp -r libswresample/ /usr/local/ffmpeg/include/ffmpeg/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">cp</span> -r libpostproc/ /usr/local/ffmpeg/include/ffmpeg/</span></span><br><span class="line">cp -r libavutil/ /usr/local/ffmpeg/include/ffmpeg/</span><br><span class="line">cp -r libavformat/ /usr/local/ffmpeg/include/ffmpeg/</span><br><span class="line">cp -r libavfilter/ /usr/local/ffmpeg/include/ffmpeg/</span><br><span class="line">cp -r libavcodec/ /usr/local/ffmpeg/include/ffmpeg/</span><br><span class="line">cp -r libavdevice/ /usr/local/ffmpeg/include/ffmpeg/</span><br><span class="line">cp -r ffmpeg/ /usr/include/</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># ffmpeg 安装程序会在 /usr/local/ffmpeg/lib/pkgconfig 目录下提供 libavcodec.pc libswscale.pc 等5个.pc文件，分别对应安装的五个库文件。必须要让 pkg-config 能找到 ffmpeg 的 *.pc 文件，通过 PKG_CONFIG_PATH 来设置 pkg-config 来更新。</span></span></span><br><span class="line">echo &#x27;export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig:/usr/local/ffmpeg/lib/pkgconfig&#x27; &gt;&gt; /etc/profile</span><br><span class="line">echo &#x27;export FFMPEG_HOME=/usr/local/ffmpeg&#x27; &gt;&gt; /etc/profile</span><br><span class="line">echo &#x27;export PATH=$PATH:$FFMPEG_HOME&#x27; &gt;&gt; /etc/profile</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>centos</category>
+        <category>ffmpeg</category>
+      </categories>
       <tags>
-        <tag>Oracle Cloud</tag>
-        <tag>防火墙</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -427,24 +469,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Centos7.6安装ffmpeg</title>
-    <url>/2021/08/18/centos7%E5%AE%89%E8%A3%85ffmpeg/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="Centos7-6安装ffmpeg"><a href="#Centos7-6安装ffmpeg" class="headerlink" title="Centos7.6安装ffmpeg"></a>Centos7.6安装ffmpeg</h3>
-          </div>
-
-<span id="more"></span>
-
-<h4 id="安装脚本命令"><a href="#安装脚本命令" class="headerlink" title="安装脚本命令"></a>安装脚本命令</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装 ffmpeg(从git下载太慢了,建议其他地方下载然后在上传)(过程挺大)</span></span><br><span class="line">rm -rf /usr/local/ffmpeg</span><br><span class="line">mkdir /usr/local/ffmpeg</span><br><span class="line">cd /usr/local/ffmpeg</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">git <span class="built_in">clone</span> https://git.ffmpeg.org/ffmpeg.git ffmpeg</span></span><br><span class="line">wget http://ffmpeg.org/releases/ffmpeg-4.3.1.tar.gz</span><br><span class="line">tar xvf ffmpeg-4.3.1.tar.gz</span><br><span class="line">cd ffmpeg-4.3.1</span><br><span class="line">./configure --enable-shared --prefix=/usr/local/ffmpeg --disable-yasm</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 添加动态库路径</span></span></span><br><span class="line">touch  /etc/ld.so.conf.d/fmpeg.conf</span><br><span class="line">echo &#x27;/usr/local/ffmpeg/lib&#x27; &gt;&gt; /etc/ld.so.conf.d/fmpeg.conf</span><br><span class="line">ldconfig -v</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 软连接</span></span></span><br><span class="line">rm -rf /usr/bin/ffmpeg</span><br><span class="line">ln -s /usr/local/ffmpeg/bin/ffmpeg /usr/bin/ffmpeg</span><br><span class="line">rm -rf /usr/bin/ffprobe</span><br><span class="line">ln -s /usr/local/ffmpeg/bin/ffprobe /usr/bin/ffprobe</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 头文件</span></span></span><br><span class="line">cd /usr/local/ffmpeg/include/</span><br><span class="line">mkdir ffmpeg</span><br><span class="line">cp -r libswscale/ /usr/local/ffmpeg/include/ffmpeg/</span><br><span class="line">cp -r libswresample/ /usr/local/ffmpeg/include/ffmpeg/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">cp</span> -r libpostproc/ /usr/local/ffmpeg/include/ffmpeg/</span></span><br><span class="line">cp -r libavutil/ /usr/local/ffmpeg/include/ffmpeg/</span><br><span class="line">cp -r libavformat/ /usr/local/ffmpeg/include/ffmpeg/</span><br><span class="line">cp -r libavfilter/ /usr/local/ffmpeg/include/ffmpeg/</span><br><span class="line">cp -r libavcodec/ /usr/local/ffmpeg/include/ffmpeg/</span><br><span class="line">cp -r libavdevice/ /usr/local/ffmpeg/include/ffmpeg/</span><br><span class="line">cp -r ffmpeg/ /usr/include/</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># ffmpeg 安装程序会在 /usr/local/ffmpeg/lib/pkgconfig 目录下提供 libavcodec.pc libswscale.pc 等5个.pc文件，分别对应安装的五个库文件。必须要让 pkg-config 能找到 ffmpeg 的 *.pc 文件，通过 PKG_CONFIG_PATH 来设置 pkg-config 来更新。</span></span></span><br><span class="line">echo &#x27;export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig:/usr/local/ffmpeg/lib/pkgconfig&#x27; &gt;&gt; /etc/profile</span><br><span class="line">echo &#x27;export FFMPEG_HOME=/usr/local/ffmpeg&#x27; &gt;&gt; /etc/profile</span><br><span class="line">echo &#x27;export PATH=$PATH:$FFMPEG_HOME&#x27; &gt;&gt; /etc/profile</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>centos</category>
-        <category>ffmpeg</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>emby使用手册</title>
     <url>/2023/03/01/emby%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
@@ -467,53 +491,19 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu、Armbian等Debian系统安装PLEX服务</title>
-    <url>/2021/08/04/Ubuntu%E3%80%81Armbian%E6%90%AD%E5%BB%BAplex%E6%9C%8D%E5%8A%A1/</url>
+    <title>linux操作系统故障处理-ext4文件系统超级块“can&#39;t read superblock”损坏修复</title>
+    <url>/2021/08/16/ext4%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%96%AD%E7%94%B5%E4%BF%AE%E5%A4%8D/</url>
     <content><![CDATA[<div class="note success">
-            <h3 id="Ubuntu、Armbian等Debian系统安装PLEX服务"><a href="#Ubuntu、Armbian等Debian系统安装PLEX服务" class="headerlink" title="Ubuntu、Armbian等Debian系统安装PLEX服务"></a>Ubuntu、Armbian等Debian系统安装PLEX服务</h3>
+            <h3 id="“can’t-read-superblock”损坏修复"><a href="#“can’t-read-superblock”损坏修复" class="headerlink" title="“can’t read superblock”损坏修复"></a>“can’t read superblock”损坏修复</h3>
           </div>
 
-<div class="note success">
-            <h3 id="使用-deb文件安装方式"><a href="#使用-deb文件安装方式" class="headerlink" title="使用 deb文件安装方式"></a>使用 deb文件安装方式</h3><ul><li><p>访问 <a href="https://www.plex.tv/media-server-downloads/#plex-media-server">plex downlod</a> 页面 </p></li><li><p>选择linux-&gt;<a href="https://downloads.plex.tv/plex-media-server-new/1.27.0.5897-3940636f2/debian/plexmediaserver_1.27.0.5897-3940636f2_amd64.deb">Ubuntu (16.04+) / Debian (8+) - Intel/AMD 64-bit</a> 下载 .deb文件</p></li></ul><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dpkg -i plexmediaserver.deb</span><br></pre></td></tr></table></figure>
-          </div>
 
-<span id="more"></span>
-
-<div class="note success">
-            <h3 id="使用Plex存储库"><a href="#使用Plex存储库" class="headerlink" title="使用Plex存储库"></a>使用Plex存储库</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -</span><br></pre></td></tr></table></figure><h4 id><a href="#" class="headerlink" title></a></h4><p>将存储库添加到系统</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list</span><br></pre></td></tr></table></figure><h4 id="-1"><a href="#-1" class="headerlink" title></a></h4><p>更新apt缓存</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure><!--more--><h4 id="-2"><a href="#-2" class="headerlink" title></a></h4><p>安装plex</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install plexmediaserver</span><br></pre></td></tr></table></figure><h4 id="-3"><a href="#-3" class="headerlink" title></a></h4><p>查看plex服务状态</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl status plexmediaserver.service</span><br></pre></td></tr></table></figure><h4 id="-4"><a href="#-4" class="headerlink" title></a></h4><p>卸载plex服务</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt remove plexmediaserver</span><br></pre></td></tr></table></figure><h4 id="-5"><a href="#-5" class="headerlink" title></a></h4><p>plex默认访问地址 <a href="http://127.0.0.1:32400/web">http://127.0.0.1:32400/web</a></p>
-          </div>]]></content>
+<h4 id="修复命令"><a href="#修复命令" class="headerlink" title="修复命令"></a>修复命令</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo fsck -y /dev/sda1</span><br><span class="line">mount /dev/sda1 /mnt</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>plex</category>
+        <category>Linux</category>
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>Ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/01/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><span id="more"></span>
-
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -558,19 +548,29 @@
       </tags>
   </entry>
   <entry>
-    <title>linux操作系统故障处理-ext4文件系统超级块“can&#39;t read superblock”损坏修复</title>
-    <url>/2021/08/16/ext4%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%96%AD%E7%94%B5%E4%BF%AE%E5%A4%8D/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="“can’t-read-superblock”损坏修复"><a href="#“can’t-read-superblock”损坏修复" class="headerlink" title="“can’t read superblock”损坏修复"></a>“can’t read superblock”损坏修复</h3>
-          </div>
+    <title>Hello World</title>
+    <url>/2021/01/01/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><span id="more"></span>
 
+<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="修复命令"><a href="#修复命令" class="headerlink" title="修复命令"></a>修复命令</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo fsck -y /dev/sda1</span><br><span class="line">mount /dev/sda1 /mnt</span><br></pre></td></tr></table></figure>]]></content>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
       <categories>
-        <category>Linux</category>
+        <category>hexo</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
+        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -604,40 +604,6 @@
       <tags>
         <tag>java</tag>
         <tag>maven</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决mac上运行app损坏问题</title>
-    <url>/2022/07/01/%E8%A7%A3%E5%86%B3mac%E4%B8%8A%E8%BF%90%E8%A1%8Capp%E6%8D%9F%E5%9D%8F%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="解决mac上运行app损坏问题"><a href="#解决mac上运行app损坏问题" class="headerlink" title="解决mac上运行app损坏问题"></a>解决mac上运行app损坏问题</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo xattr -r -d com.apple.quarantine /Applications/xxxx.app</span><br></pre></td></tr></table></figure>
-          </div>]]></content>
-      <tags>
-        <tag>macos</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决docker容器中的nginx代理其他容器的各种问题</title>
-    <url>/2021/03/05/%E8%A7%A3%E5%86%B3docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E7%9A%84nginx%E4%BB%A3%E7%90%86%E5%85%B6%E4%BB%96%E5%AE%B9%E5%99%A8%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<div class="note success">
-            <h3 id="解决docker容器中的nginx代理其他容器出现404或者不通"><a href="#解决docker容器中的nginx代理其他容器出现404或者不通" class="headerlink" title="解决docker容器中的nginx代理其他容器出现404或者不通"></a>解决docker容器中的nginx代理其他容器出现404或者不通</h3>
-          </div>
-
-
-<h4 id="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络"><a href="#例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络" class="headerlink" title="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络"></a>例如下面这段dockerfile，需要指定容器在同一<font color="ff0000"><span class="label success">networks</span></font>下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络</h4><span id="more"></span>
-
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line">services:</span><br><span class="line">  nginx:</span><br><span class="line">    container_name: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">    restart: <span class="string">&#x27;always&#x27;</span></span><br><span class="line">    image: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">    networks:</span><br><span class="line">      - frontend</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&#x27;80:80&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;443:443&#x27;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - <span class="string">&#x27;/home/nginx/www:/usr/share/nginx/html&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;/home/nginx/log:/var/log/nginx/&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;/home/nginx/conf:/etc/nginx/conf.d&#x27;</span></span><br><span class="line"></span><br><span class="line">  music:</span><br><span class="line">    container_name: <span class="string">&#x27;music&#x27;</span></span><br><span class="line">    restart: <span class="string">&#x27;always&#x27;</span></span><br><span class="line">    image: <span class="string">&#x27;binaryify/netease_cloud_music_api&#x27;</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&#x27;3000:3000&#x27;</span></span><br><span class="line">    networks:</span><br><span class="line">      - frontend</span><br><span class="line">networks:</span><br><span class="line">  frontend:</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="查看容器信息命令，可以获取容器ip等信息"><a href="#查看容器信息命令，可以获取容器ip等信息" class="headerlink" title="查看容器信息命令，可以获取容器ip等信息"></a>查看容器信息命令，可以获取容器ip等信息</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker inspect container</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -686,8 +652,18 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>nginx</tag>
         <tag>SSL</tag>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决mac上运行app损坏问题</title>
+    <url>/2022/07/01/%E8%A7%A3%E5%86%B3mac%E4%B8%8A%E8%BF%90%E8%A1%8Capp%E6%8D%9F%E5%9D%8F%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="解决mac上运行app损坏问题"><a href="#解决mac上运行app损坏问题" class="headerlink" title="解决mac上运行app损坏问题"></a>解决mac上运行app损坏问题</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo xattr -r -d com.apple.quarantine /Applications/xxxx.app</span><br></pre></td></tr></table></figure>
+          </div>]]></content>
+      <tags>
+        <tag>macos</tag>
       </tags>
   </entry>
   <entry>
@@ -700,9 +676,33 @@
         <category>hexo</category>
       </categories>
       <tags>
-        <tag>blog</tag>
         <tag>github</tag>
+        <tag>blog</tag>
         <tag>vercel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决docker容器中的nginx代理其他容器的各种问题</title>
+    <url>/2021/03/05/%E8%A7%A3%E5%86%B3docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E7%9A%84nginx%E4%BB%A3%E7%90%86%E5%85%B6%E4%BB%96%E5%AE%B9%E5%99%A8%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<div class="note success">
+            <h3 id="解决docker容器中的nginx代理其他容器出现404或者不通"><a href="#解决docker容器中的nginx代理其他容器出现404或者不通" class="headerlink" title="解决docker容器中的nginx代理其他容器出现404或者不通"></a>解决docker容器中的nginx代理其他容器出现404或者不通</h3>
+          </div>
+
+
+<h4 id="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络"><a href="#例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy-pass代理成功，当然最后需要在services同级声明外部网络" class="headerlink" title="例如下面这段dockerfile，需要指定容器在同一下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络"></a>例如下面这段dockerfile，需要指定容器在同一<font color="ff0000"><span class="label success">networks</span></font>下，才可以通过nginx中的proxy_pass代理成功，当然最后需要在services同级声明外部网络</h4><span id="more"></span>
+
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line">services:</span><br><span class="line">  nginx:</span><br><span class="line">    container_name: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">    restart: <span class="string">&#x27;always&#x27;</span></span><br><span class="line">    image: <span class="string">&#x27;nginx&#x27;</span></span><br><span class="line">    networks:</span><br><span class="line">      - frontend</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&#x27;80:80&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;443:443&#x27;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - <span class="string">&#x27;/home/nginx/www:/usr/share/nginx/html&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;/home/nginx/log:/var/log/nginx/&#x27;</span></span><br><span class="line">      - <span class="string">&#x27;/home/nginx/conf:/etc/nginx/conf.d&#x27;</span></span><br><span class="line"></span><br><span class="line">  music:</span><br><span class="line">    container_name: <span class="string">&#x27;music&#x27;</span></span><br><span class="line">    restart: <span class="string">&#x27;always&#x27;</span></span><br><span class="line">    image: <span class="string">&#x27;binaryify/netease_cloud_music_api&#x27;</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&#x27;3000:3000&#x27;</span></span><br><span class="line">    networks:</span><br><span class="line">      - frontend</span><br><span class="line">networks:</span><br><span class="line">  frontend:</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="查看容器信息命令，可以获取容器ip等信息"><a href="#查看容器信息命令，可以获取容器ip等信息" class="headerlink" title="查看容器信息命令，可以获取容器ip等信息"></a>查看容器信息命令，可以获取容器ip等信息</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker inspect container</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>nginx</tag>
       </tags>
   </entry>
 </search>
