@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content=#58b77a>
+  <title>File Browser 安装及使用 | Viper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <script id="hexo-configurations">
+  var CONFIG = {
+    root: '/',
+    theme: 'lx',
+    version: '0.3.9',
+    localsearch:{
+      "enable": true,
+      "trigger": "auto",
+      "top_n_per_article": 1,
+      "unescape": false,
+      "preload": false
+      },
+    path: 'search.xml'
+  };
+</script>
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/css/main.min.css">
+  <style type="text/css">
+    pre,
+    code {
+      font-family: 'Fira Code', monospace;
+    }
+    html {
+      font-family: sans-serif;
+    }
+    body {
+      font-family: sans-serif;
+    }
+    h1, h2, h3, h4, h5, figure {
+      font-family: sans-serif;
+    }
+    .menu-container{
+      font-family: sans-serif;
+    }
+  </style>
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/js/jquery.jside.menu.js"></script>
+  <script src="/js/hexo_resize_image.js"></script>
+	<script>
+	$(document).ready(function(){
+	$(".menu-container").jSideMenu({
+	    jSidePosition: "position-right",
+	    jSideSticky: true,
+	    jSideSkin: "green",
+	     });
+	}); 
+	</script>
+  <!--Google_Analytics-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L2DSWH0BDP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L2DSWH0BDP');
+</script>
+<!--baidu_analytics-->
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?1859f9538664912896f7e98bff416e26";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+<div class="single">
+<a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i></a>
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Search..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+<div id="page">
+<div id="lx-aside" style="background-image: url(https://revolution.viper.pub/blog-assets/20220920/wallhaven-pkv16e.19zhp7zwpv8g.webp);background-size: cover;background-repeat: no-repeat;width: 100vw;" data-stellar-background-ratio="0.5">
+  <div class="overlay">
+  <div class="page-title">
+    <div class="avatar"><a href="/"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" data-original="/images/avatar.jpg"></a></div>
+    <span>2021-09-07</span>
+    <h2>File Browser...</h2>
+    <div class="tags"><i class="fa fa-tag"></i><a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a></div>
+    <div class="social-links">
+<script src="https://www.jq22.com/demo/jQueryTypeit201709040000/dist/typeit.min.js"></script>
+
+    <a href="https://github.com/viperjooy" target="_blank"><i class="fa fa-github fa-fw"></i></a>
+<script src="https://www.jq22.com/demo/jQueryTypeit201709040000/dist/typeit.min.js"></script>
+
+    <a href="mailto:viperjooy@email.com" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+<script src="https://www.jq22.com/demo/jQueryTypeit201709040000/dist/typeit.min.js"></script>
+
+    <a href="https://weibo.com/viperjooy" target="_blank"><i class="fa fa-weibo fa-fw"></i></a>
+<script src="https://www.jq22.com/demo/jQueryTypeit201709040000/dist/typeit.min.js"></script>
+
+    <a href="https://www.youtube.com/channel/UCkYS9Cw5yEvwSnZKwIgOTbg" target="_blank"><i class="fa fa-youtube fa-fw"></i></a>
+<script src="https://www.jq22.com/demo/jQueryTypeit201709040000/dist/typeit.min.js"></script>
+
+    <a href="https://music.viper.work" target="_blank"><i class="fa fa-music fa-fw"></i></a>
+<script src="https://www.jq22.com/demo/jQueryTypeit201709040000/dist/typeit.min.js"></script>
+
+    <a href="https://stay-vibrant.viper.pub" target="_blank"><i class="fa fa-play fa-fw"></i></a>
+</div>
+    <span id="hitokoto" style="text-align:center;"><h1 class="hitokoto_text" id="hitokoto_text" style="color: rgb(231, 226, 226);"></h1>—
+        <b style="color:white;font-style: italic;" id="from"></b></span>
+        <script>
+ document.write('<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />');  
+
+            fetch('https://v1.hitokoto.cn?c=j')
+              .then(response => response.json())
+              .then(data => {
+                const hitokoto = document.getElementById('hitokoto_text')
+                hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+                // hitokoto.innerText = data.hitokoto
+                const from = document.getElementById('from')
+                from.innerText = data.from
+
+                $('.hitokoto_text').typeIt({
+                    whatToType: data.hitokoto,
+                    typeSpeed: 100
+                })
+              })
+              .catch(console.error)
+
+             
+          </script>
+</div>
+</div>
+</div>
+
+<div id="lx-main-content">
+  <div class="lx-post">
+    <div class="lx-entry padding">
+      <div>
+        <div class="note success">
+            <h3 id="File-Browser-安装及使用"><a href="#File-Browser-安装及使用" class="headerlink" title="File Browser 安装及使用"></a>File Browser 安装及使用</h3>
+          </div>
+
+
+
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><h2 id="File-Browser-是一个基于-Web-的文件管理器。它可以使你随时随地的对某一目录下设备的文件进行基本的管理操作，如：创建、删除、移动、复制等。同时它还支持多个用户的管理，而且每个用户可以拥有自己可以访问的文件和权限等十分丰富的特性。"><a href="#File-Browser-是一个基于-Web-的文件管理器。它可以使你随时随地的对某一目录下设备的文件进行基本的管理操作，如：创建、删除、移动、复制等。同时它还支持多个用户的管理，而且每个用户可以拥有自己可以访问的文件和权限等十分丰富的特性。" class="headerlink" title="File Browser 是一个基于 Web 的文件管理器。它可以使你随时随地的对某一目录下设备的文件进行基本的管理操作，如：创建、删除、移动、复制等。同时它还支持多个用户的管理，而且每个用户可以拥有自己可以访问的文件和权限等十分丰富的特性。"></a>File Browser 是一个基于 Web 的文件管理器。它可以使你随时随地的对某一目录下设备的文件进行基本的管理操作，如：创建、删除、移动、复制等。同时它还支持多个用户的管理，而且每个用户可以拥有自己可以访问的文件和权限等十分丰富的特性。</h2><span id="more"></span>
+
+<h3 id="安装及配置"><a href="#安装及配置" class="headerlink" title="安装及配置"></a>安装及配置</h3><p>File Browser 适用于全平台，任何操作系统都可以安装它，当然，我会以 Linux 为主。<br>File Browser 在 Linux 的安装非常简单，只需要一条命令就可以搞定：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh | bash</span><br></pre></td></tr></table></figure>
+<p>当安装好之后，你并不能立即使用它，需要修改一些配置。</p>
+<ul>
+<li><p>创建配置数据库：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebrowser -d /etc/filebrowser.db config init</span><br></pre></td></tr></table></figure></li>
+<li><p>设置监听地址：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebrowser -d /etc/filebrowser.db config set --address 0.0.0.0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置监听端口：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebrowser -d /etc/filebrowser.db config set --port 8088</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置语言环境：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebrowser -d /etc/filebrowser.db config set --locale zh-cn</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置日志位置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebrowser -d /etc/filebrowser.db config set --log /var/log/filebrowser.log</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加一个用户：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebrowser -d /etc/filebrowser.db users add root password --perm.admin</span><br></pre></td></tr></table></figure>
+<p>其中的root和password分别是用户名和密码，根据自己的需求更改。<br>有关更多配置的选项，可以参考官方文档：<a target="_blank" rel="noopener" href="https://filebrowser.org/">https://filebrowser.org/</a>  </p>
+<h4 id><a href="#" class="headerlink" title></a></h4></li>
+<li><p>配置修改好以后，就可以启动 File Browser 了，使用-d参数指定配置数据库路径。示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebrowser -d /etc/filebrowser.db</span><br></pre></td></tr></table></figure>
+<p>启动成功就可以使用浏览器访问 File Browser 了，在浏览器输入 IP:端口，示例：<a target="_blank" rel="noopener" href="http://192.168.1.1:8088/">http://192.168.1.1:8088</a><br>然后会看到 File Browser 的登陆界面，用刚刚创建的用户登陆。<br>登陆以后，默认会看到 File Browser 运行目录下的文件，需要更改一下当前用户的文件夹位置。<br>点击 [设置] → [用户设置] → 编辑用户 admin → 将目录范围改为你想要显示的文件夹，例如：/mnt → 修改完成后点击最下方的保存即可。<br>这样，File Browser 的基本安装和配置就搞定了。</p>
+</li>
+</ul>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行"></a>后台运行</h4><p>File Browser 默认是前台运行，想使其后台运行，有如下一些方法：</p>
+<ul>
+<li><p>nohup 大法：<br>运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup filebrowser -d /etc/filebrowser.db &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<p>停止运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -9 $(pidof filebrowser)</span><br></pre></td></tr></table></figure>
+<p>开机启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;/exit 0/i nohup filebrowser -d /etc/filebrowser.db &gt;/dev/null 2&gt;&amp;1 &amp;&#x27; /etc/rc.local</span><br></pre></td></tr></table></figure>
+<p>取消开机启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;/nohup filebrowser -d /etc/filebrowser.db &gt;/dev/null 2&gt;&amp;1 &amp;/d&#x27; /etc/rc.local</span><br></pre></td></tr></table></figure></li>
+<li><p>systemd 大法：<br>首先下载 File Browser 的 service 文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://raw.githubusercontent.com/zhfe981206/filebrowser/master/filebrowser.service -O /lib/systemd/system/filebrowser.service</span><br></pre></td></tr></table></figure>
+<p>如果你的运行命令不是</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/filebrowser -d /etc/filebrowser.db</span><br></pre></td></tr></table></figure>
+<p>则需要对 service 文件进行修改，将文件的 ExecStart 改为你的运行命令，更改完成后需要输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+<p>运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start filebrowser.service</span><br></pre></td></tr></table></figure>
+<p>停止运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop filebrowser.service</span><br></pre></td></tr></table></figure>
+<p>开机启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable filebrowser.service</span><br></pre></td></tr></table></figure>
+<p>取消开机启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable filebrowser.service</span><br></pre></td></tr></table></figure>
+<p>查看运行状态：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status filebrowser.service</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>screen 大法<br>使用screen，如果没有请使用包管理器安装。<br>使用screen命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -S filebrowser</span><br></pre></td></tr></table></figure>
+<p>创建一个screen会话，在该会话里运行filebrowser，启动后使用Ctrl+a,d离开会话。<br>我推荐使用 systemd 的方法来后台运行，当然，前提是你所使用的操作系统支持 systemd，其次推荐使用screen的方法，简单粗暴。</p>
+</li>
+</ul>
+<h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><p>File Browser 2.0 起开始内建 HTTPS 支持，只需要配置 SSL 证书即可。</p>
+<ul>
+<li><p>配置SSL：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebrowser -d /etc/filebrowser.db config set --cert example.com.crt --key example.com.key</span><br></pre></td></tr></table></figure>
+<p>其中example.com.crt和example.com.key分别是 SSL 证书和密钥路径，根据自身情况进行更改。配置完 SSL 后，只可以使用 HTTPS 访问，不可以使用 HTTP。</p>
+</li>
+<li><p>取消 SSL：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebrowser -d /etc/filebrowser.db config set --cert &quot;&quot; --key &quot;&quot;</span><br></pre></td></tr></table></figure>
+<p>在这里，我比较建议直接使用Caddy，Caddy一个开源、支持 HTTP/2 的 Web 服务器，它的一个显著特点就是默认启用 HTTPS 访问，会自己申请 SSL 证书，同时支持大量的插件，File Browser 就可以作为其插件运行。同时，通过下载相应的插件以及配置环境变量可以自动实现ssl证书的申请。<br>比如我的域名套了一层cloudflare，我便可以下载对应的插件，实现自动申请ssl证书。</p>
+</li>
+</ul>
+<h3 id="外网访问"><a href="#外网访问" class="headerlink" title="外网访问"></a>外网访问</h3><p>每个人的情况不同，外网访问的配置方法也不一样。</p>
+<p>对于vps等，一般都会分配公网 IP 地址，不管是 v4 还是 v6，在防火墙上打开相应的端口以及设置好端口转发即可。对于一些服务器内使用了防火墙的（iptables，firewalld），不仅需要打开服务提供商的防火墙上对应的端口以及设置好端口转发，还需设置服务器上的防火墙。</p>
+<p>如果你没有公网IP地址，那么你想要外网访问可能就需要内网穿透了。</p>
+<p>原文地址：<a target="_blank" rel="noopener" href="https://blog.ukiyo.top/post/35356/">File Browser 安装及使用</a> 感谢🙏s作者</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="lx-navigation">
+	<div class="lx-cover prev lx-cover-sm" style="background-image: url(https://revolution.viper.pub/blog-assets/20220920/wallhaven-j3l7em.kn80ll1ao1s.webp)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2021/10/15/mac%E4%B8%8B%E4%BD%BF%E7%94%A8ffmpeg%E8%B0%83%E7%94%A8%E6%91%84%E5%83%8F%E5%A4%B4%E6%8E%A8%E6%B5%81/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Next</span>
+						<h3>mac下使用f...</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+        <div class="lx-cover next lx-cover-sm" style="background-image: url(https://revolution.viper.pub/blog-assets/20220920/wallhaven-x8opzv.1vy97wo5ysm8.webp)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2021/08/18/centos7%E5%AE%89%E8%A3%85ffmpeg/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Prev</span>
+						<h3>Centos7...</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+</div>
+<div class="comment"><div id="comments"></div></div>
+<footer>
+  <div>
+  Copyright &copy; 2023.<a href="/">Viper</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br>
+  </div>
+</footer>
+
+</div>
+
+<button class="hamburger hamburger--arrow-r" type="button">
+    <div class="hamburger-box">
+      <div class="hamburger-inner"></div>
+    </div>
+</button> 
+<div class="menu visibility">
+  <div class="menu-head">
+    <span class="layer">
+      <div class="col">
+        <div class="row for-pic">
+          <div class="profile-pic">
+            <a href="/"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" data-original="/images/avatar.jpg" alt=""/></a>
+          </div>
+        </div>
+        <div class="row for-name">
+          <p></p>
+          <span class="tagline">Hello, World!</span>
+        </div>
+      </div>
+    </span>
+  </div>
+  <nav class="menu-container">
+  <ul class="menu-items">
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>Home</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-th-list fa-fw"></i>Categories</span>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SMB/">SMB</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/centos/">centos</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/centos/ffmpeg/">ffmpeg</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/docker/%E5%9B%BE%E5%BA%8A/">图床</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/emby/">emby</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/emby/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/filebrowser/">filebrowser</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jellyfin/">jellyfin</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jellyfin/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/mysql/">mysql</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/plex/">plex</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/plex/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/qbittorrent/">qbittorrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/rclone/">rclone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8E%A8%E6%B5%81/">推流</a></li></ul>
+    </li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-bookmark fa-fw"></i>Pages</span>
+        <ul>
+          <li><a href="/about/">About</a></li>
+        <li><a href="/guestbook/">Guestbook</a></li>
+        </ul>
+    </li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-link fa-fw"></i>Friends</span>
+        <ul>
+          <li> <a href="https://lx.js.org" target="_blank">Theme-Lx</a></li>
+        </ul>
+    </li>
+  </ul>
+  </nav>
+</div>
+
+<div class="gototop js-top">
+  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/js/jquery.easing.min.js"></script>
+<script>
+(function () {
+	"use strict";
+	var goToTop = function() {
+		$(".js-gotop").on("click", function(event){
+			event.preventDefault();
+			$("html, body").animate({
+				scrollTop: $("html").offset().top
+			}, 500, "easeInOutExpo");
+			return false;
+		});
+		$(window).scroll(function(){
+			var $win = $(window);
+			if ($win.scrollTop() > 200) {
+				$(".js-top").addClass("active");
+			} else {
+				$(".js-top").removeClass("active");
+			}
+		});
+	};
+	$(function(){
+		goToTop();
+	});
+}());
+</script>
+<script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/js/local.search.js"></script>
+<script src="//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '93qjQ56m3tU7gqQKaQ17lpde-gzGzoHsz',
+    appKey: 'n6yWY2Wsu0KLTSrp8yvrVqKO',
+    placeholder: 'Say something.',
+    avatar: 'identicon',
+    meta: guest,
+    pageSize: '5' || 10,
+    lang: 'en' || 'zh-cn'
+  });
+</script>
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,d=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=o());for(var e,i=0;i<d.length;i++)0<=(e=(e=d[i]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,a,n,o=d[i];e=function(){d=d.filter(function(t){return o!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(o)},(t=o).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,n=t.getAttribute("data-original"),a.onload=function(){t.src=n,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=n},t.src!==n&&(a.src=n)))}()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)}(this);</script></body>
+</html>
